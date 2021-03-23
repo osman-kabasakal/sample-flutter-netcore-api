@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +13,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Sample.Products.Backend.Business.Concrete.Services;
+using Sample.Products.Backend.Core.Aspects.Concrete;
+using Sample.Products.Backend.Core.Aspects.Interfaces;
 using Sample.Products.Backend.DataAccess.Concrete.EntityFramework.Context;
+using Sample.Products.Backend.DataAccess.Concrete.UnitOfWork.DependencyInjection;
 using Sample.Products.Backend.Entities.Concrete.Tables;
 
 namespace Sample.Products.Backend.Api
@@ -45,9 +50,20 @@ namespace Sample.Products.Backend.Api
                 options.EnableSensitiveDataLogging();
             });
             
-            // services.AddIdentity<Customer, RegisteredRole>()
-            //     .AddDefaultTokenProviders()
-            //     .AddEntityFrameworkStores<SampleProductsContext>();
+            services.AddIdentity<Customer, RegisteredRole>()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<SampleProductsContext>();
+            
+            services.AddAutoMapper(
+                Assembly.GetAssembly(typeof(SampleProductsContext)),
+                Assembly.GetAssembly(typeof(TagService)),
+                Assembly.GetExecutingAssembly(),
+                Assembly.GetAssembly(typeof(AspectContext)));
+            
+            services.AddUnitOfWork<SampleProductsContext>();
+            services.AddScoped<ITagService,TagService>();
+            // services.AddScoped<ITagService>(x=>);
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
