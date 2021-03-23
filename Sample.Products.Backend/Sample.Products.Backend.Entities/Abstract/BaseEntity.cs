@@ -22,7 +22,7 @@ namespace Sample.Products.Backend.Entities.Abstract
             }
         }
 
-
+        public int Id { get; set; }
         public byte[] TimeStamp { get; set; }
     }
 }

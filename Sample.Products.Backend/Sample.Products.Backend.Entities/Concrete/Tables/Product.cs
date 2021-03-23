@@ -14,8 +14,12 @@ namespace Sample.Products.Backend.Entities.Concrete.Tables
         public int BrandId { get; set; }
 
         public virtual Brand Brand { get; set; }
-        public virtual ICollection<ProductPicture> Pictures { get; set; }
+        public virtual ICollection<ProductPicture> ProductPictures { get; set; }
         public virtual ICollection<ProductCategory> ProductCategories { get; set; }
         public virtual ICollection<ProductTag> ProductTags { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<Picture> Pictures { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
+        
     }
 }
