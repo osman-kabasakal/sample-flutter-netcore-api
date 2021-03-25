@@ -34,6 +34,7 @@ using Sample.Products.Backend.Core.Aspects.Interfaces;
 using Sample.Products.Backend.Core.Constants;
 using Sample.Products.Backend.DataAccess.Concrete.EntityFramework.Context;
 using Sample.Products.Backend.DataAccess.Concrete.UnitOfWork.DependencyInjection;
+using Sample.Products.Backend.Entities.Abstract;
 using Sample.Products.Backend.Entities.Concrete.Tables;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
@@ -65,6 +66,22 @@ namespace Sample.Products.Backend.Api
                 x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
             services.AddHttpContextAccessor();
+            SeedData.Seder = new SetupManager(new FileService(_environment));
+            services.AddAutoMapper(
+                Assembly.GetAssembly(typeof(SampleProductsContext)),
+                Assembly.GetAssembly(typeof(TagService)),
+                Assembly.GetExecutingAssembly(),
+                Assembly.GetAssembly(typeof(AspectContext)));
+            
+            services.AddUnitOfWork<SampleProductsContext>();
+            services.AddScoped<ITagService, TagService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddHttpClient<IPictureService, PictureService>();
+            services.AddScoped<IFileService, FileService>();
+            services.AddHttpClient<IUnsplashClient, UnsplashClient>();
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ISetupManager, SetupManager>();
             services.AddDbContext<SampleProductsContext>(options =>
             {
                 options.UseSqlServer(
@@ -129,20 +146,6 @@ namespace Sample.Products.Backend.Api
                     }
                 };
             });
-            services.AddAutoMapper(
-                Assembly.GetAssembly(typeof(SampleProductsContext)),
-                Assembly.GetAssembly(typeof(TagService)),
-                Assembly.GetExecutingAssembly(),
-                Assembly.GetAssembly(typeof(AspectContext)));
-
-            services.AddUnitOfWork<SampleProductsContext>();
-            services.AddScoped<ITagService, TagService>();
-            services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IProductService, ProductService>();
-            services.AddHttpClient<IPictureService, PictureService>();
-            services.AddScoped<IFileService, FileService>();
-            services.AddHttpClient<IUnsplashClient, UnsplashClient>();
-            services.AddScoped<ICustomerService, CustomerService>();
             // services.AddScoped<ITagService>(x=>);
         }
 
@@ -179,18 +182,36 @@ namespace Sample.Products.Backend.Api
             var host = app.ApplicationServices;
             using (var scope = host.CreateScope())
             {
-                var services = scope.ServiceProvider;
-                // var context = services.GetRequiredService<SampleProductsContext>();
-                // context.Database.Migrate();
+                
+                
             
                 // requires using Microsoft.Extensions.Configuration;
                 // var userManager = host.GetService(typeof(UserManager<Customer>)) as UserManager<Customer>;
                 // var email = "test@sample.com";
                 // Set password with the Secret Manager tool.
                 // dotnet user-secrets set SeedUserPW <pw>
-            
+                var services = scope.ServiceProvider;
                 try
                 {
+                    
+                    var context = services.GetRequiredService<SampleProductsContext>();
+                    context.Database.Migrate();
+                    var productService = services.GetRequiredService<IProductService>();
+                    var product = productService.GetAllProducts(0, 1);
+                    if (product.IsSuccessful&&product.Entity.Count==0)
+                    {
+                        var setupManager = services.GetRequiredService<ISetupManager>();
+                        setupManager.setup();
+                        var pictureService = services.GetRequiredService<IPictureService>();
+
+                        var pics = pictureService.GetBinaryLessPictures();
+
+                        foreach (var picture in pics.Entity.Items)
+                        {
+                            pictureService.SetPictureBinaryFromFile(picture);
+                        }
+                    }
+                    
                     // var FirstUser=userManager.FindByEmailAsync(email).ConfigureAwait(true).GetAwaiter().GetResult();
                     // if(FirstUser == null)
                     // {
@@ -205,13 +226,13 @@ namespace Sample.Products.Backend.Api
                     //     });
                     // }
             
-                    // var pictureService = services.GetRequiredService<IPictureService>();
-                    //
-                    // var pics = pictureService.GetBinaryLessPictures();
-                    // foreach (var picture in pics.Entity.Items)
+                    // foreach (var picture in pictureService.AllPicture().Entity.Items)
                     // {
-                    //     pictureService.SetPictureBinaryFromFile(picture);
+                    //     picture.TitleAttribute = $"title-{picture.Id}";
+                    //     pictureService.UpdatePicture(picture);
                     // }
+                    
+                    
                     //
                     // pics = pictureService.GetBinaryLessPictures();
                     // if (!pics.Entity.Items.IsNullOrEmpty())

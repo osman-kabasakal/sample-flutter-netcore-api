@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Hosting;
+using Sample.Products.Backend.Entities.Abstract;
+
 namespace Sample.Products.Backend.Business.Concrete.Services
 {
     public class FileService:PhysicalFileProvider,IFileService

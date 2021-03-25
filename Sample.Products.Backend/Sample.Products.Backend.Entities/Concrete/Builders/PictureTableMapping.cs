@@ -9,9 +9,6 @@ namespace Sample.Products.Backend.Entities.Concrete.Builders
         public override void UpConfigure(EntityTypeBuilder<Picture> builder)
         {
             builder.ToTable("Pictures");
-            builder.Property<int>(x => x.Id).ValueGeneratedOnAdd();
-            builder.HasKey(x => x.Id);
-            builder.HasIndex(x => x.Id);
         }
     }
 }

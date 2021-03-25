@@ -1,6 +1,10 @@
+using System;
 using System.Linq;
+using System.Text;
+using System.Text.Unicode;
 using AutoMapper;
 using Sample.Products.Backend.Api.Models;
+using Sample.Products.Backend.Business.Concrete.Models.ExportModels;
 using Sample.Products.Backend.Entities.Concrete.Tables;
 
 namespace Sample.Products.Backend.Business.Concrete.ModelMaps
@@ -18,6 +22,15 @@ namespace Sample.Products.Backend.Business.Concrete.ModelMaps
             CreateMap<Tag, TagModel>();
             CreateMap<Brand, BrandModel>();
             CreateMap<Picture, PictureModel>();
+
+            CreateMap<Picture, PictureExportModel>();
+                // .ForMember(x => x.BinaryData,
+                //     opt => opt.MapFrom(x =>
+                //         string.Join(" ", x.BinaryData.Select(byt => Convert.ToString(byt, 2).PadLeft(8, '0')))));
+
+                CreateMap<PictureExportModel, Picture>();
+                // .ForMember(x => x.BinaryData,
+                //     opt => opt.MapFrom(x =>Encoding.UTF8.GetBytes(x.BinaryData)));
         }
     }
 }

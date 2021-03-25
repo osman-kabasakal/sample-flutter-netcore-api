@@ -21,9 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="images" />
-    <Folder Include="Maps" />
     <Folder Include="Migrations" />
+    <Folder Include="wwwroot\db" />
     <Folder Include="wwwroot\images" />
   </ItemGroup>
 

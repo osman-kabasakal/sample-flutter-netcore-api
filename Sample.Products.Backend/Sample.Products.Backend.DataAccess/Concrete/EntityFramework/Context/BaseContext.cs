@@ -22,9 +22,8 @@ namespace Sample.Products.Backend.DataAccess.Concrete.EntityFramework.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
             optionsBuilder.UseLazyLoadingProxies();
-            //optionsBuilder.EnableSensitiveDataLogging();
+            
             CustomizeConfiguration(ref optionsBuilder);
             base.OnConfiguring(optionsBuilder);
         }

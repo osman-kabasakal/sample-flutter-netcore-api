@@ -56,7 +56,17 @@ namespace Sample.Products.Backend.Business.Concrete.Services
             return path;
         }
 
+        public ServiceResponse<IPaginate<Picture>> AllPicture()
+        {
+            return new ServiceResponse<IPaginate<Picture>>()
+            {
+                Entity = Repository.GetList(index:0,size:int.MaxValue),
+                IsSuccessful = true
+            };
 
+        }
+        
+        
         public void UpdatePicture(Picture picture)
         {
             var filePath = GetPicturePath(picture, picture.MimeType);
@@ -173,6 +183,10 @@ namespace Sample.Products.Backend.Business.Concrete.Services
             {
                 _fileService.WriteAllBytes(absolutePath,picture.BinaryData);
             }
+            else if(picture.BinaryData==null||picture.BinaryData.IsNullOrEmpty())
+            {
+                SetPictureBinaryFromFile(picture);
+            }
             return new ServiceResponse<PictureModel>()
             {
                 IsSuccessful = true,
@@ -192,5 +206,7 @@ namespace Sample.Products.Backend.Business.Concrete.Services
 
         void SetPictureBinaryFromFile(Picture picture);
         ServiceResponse<PictureModel> GetPictureById(int id);
+
+        ServiceResponse<IPaginate<Picture>> AllPicture();
     }
 }

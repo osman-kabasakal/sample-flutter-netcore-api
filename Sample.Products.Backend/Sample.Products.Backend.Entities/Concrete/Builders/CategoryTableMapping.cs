@@ -12,9 +12,6 @@ namespace Sample.Products.Backend.Entities.Concrete.Builders
         public override void UpConfigure(EntityTypeBuilder<Category> builder)
         {
             builder.ToTable("Categories");
-            builder.Property(x => x.Id).IsRequired().ValueGeneratedOnAdd();
-            builder.HasKey(x => x.Id);
-            builder.HasIndex(x => x.Id);
             builder.Property(x => x.ParentId).IsRequired(false);
             builder.Property(x => x.PictureId).IsRequired(false);
             builder.HasOne(x => x.ParentCategory).WithMany(x => x.SubCategories).HasForeignKey(x => x.ParentId)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace Sample.Products.Backend.Entities.Abstract
 {
@@ -23,6 +24,8 @@ namespace Sample.Products.Backend.Entities.Abstract
         }
 
         public int Id { get; set; }
+        
+        [JsonIgnore]
         public byte[] TimeStamp { get; set; }
     }
 }

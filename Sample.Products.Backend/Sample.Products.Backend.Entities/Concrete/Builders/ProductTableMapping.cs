@@ -10,9 +10,6 @@ namespace Sample.Products.Backend.Entities.Concrete.Builders
         {
             builder.ToTable("Products");
             builder.HasOne(x => x.Brand).WithOne(x => x.Product).HasForeignKey<Product>(x => x.BrandId);
-            builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.HasKey(x => x.Id);
-            builder.HasIndex(x => x.Id);
             
             // builder.HasMany(pt => pt.ProductPictures)
             //     .WithOne(pt => pt.Product)
