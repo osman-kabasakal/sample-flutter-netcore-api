@@ -167,6 +167,12 @@ namespace Sample.Products.Backend.Business.Concrete.Services
         {
             var picture = Repository.Single(x => x.Id == id) ??
                           throw new ArgumentNullException("Repository.Single(x => x.Id == id)");
+            var filePath = GetPicturePath(picture, picture.MimeType);
+            var absolutePath = _fileService.GetAbsolutePath(filePath);
+            if (!File.Exists(absolutePath))
+            {
+                _fileService.WriteAllBytes(absolutePath,picture.BinaryData);
+            }
             return new ServiceResponse<PictureModel>()
             {
                 IsSuccessful = true,
