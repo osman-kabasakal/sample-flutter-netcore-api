@@ -1,24 +1,42 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Castle.Core.Internal;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using Sample.Products.Backend.Business.Concrete.Models;
 using Sample.Products.Backend.Business.Concrete.Services;
 using Sample.Products.Backend.Core.Aspects.Concrete;
 using Sample.Products.Backend.Core.Aspects.Interfaces;
+using Sample.Products.Backend.Core.Constants;
 using Sample.Products.Backend.DataAccess.Concrete.EntityFramework.Context;
 using Sample.Products.Backend.DataAccess.Concrete.UnitOfWork.DependencyInjection;
 using Sample.Products.Backend.Entities.Concrete.Tables;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace Sample.Products.Backend.Api
 {
@@ -26,7 +44,7 @@ namespace Sample.Products.Backend.Api
     {
         private IWebHostEnvironment _environment;
 
-        public Startup(IConfiguration configuration,IWebHostEnvironment environment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
             _environment = environment;
@@ -37,11 +55,22 @@ namespace Sample.Products.Backend.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddCors();
+            services.AddControllers().AddNewtonsoftJson(x =>
+            {
+                x.SerializerSettings.Culture = new CultureInfo("tr-TR");
+                x.UseCamelCasing(true);
+                // x.UseMemberCasing();
+                x.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+            services.AddHttpContextAccessor();
             services.AddDbContext<SampleProductsContext>(options =>
             {
                 options.UseSqlServer(
-                    Configuration.GetConnectionString(_environment.IsDevelopment() ? "DebugConnection" : "DefaultConnection"), sqlServerOptionsAction: opt =>
+                    Configuration
+                        .GetConnectionString(_environment.IsDevelopment() ? "DebugConnection" : "DefaultConnection")
+                        .TrimEnd(';', ' ') + ";MultipleActiveResultSets=true;", sqlServerOptionsAction: opt =>
                     {
                         opt.CommandTimeout(180);
                         opt.MigrationsAssembly("Sample.Products.Backend.Api");
@@ -49,21 +78,72 @@ namespace Sample.Products.Backend.Api
                 options.UseLazyLoadingProxies();
                 options.EnableSensitiveDataLogging();
             });
+            // services.AddScoped<UserManager<Customer>>();
             
-            services.AddIdentity<Customer, RegisteredRole>()
+            services
+                .AddIdentity<Customer, RegisteredRole>()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<SampleProductsContext>();
             
+            var appSettingsSection = Configuration.GetSection("JwtOptions");
+            services.Configure<JwtOptions>(appSettingsSection);
+            
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Audience = Configuration["JwtOptions:Audience"];
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.ClaimsIssuer = Configuration["JwtOptions:Issuer"];
+                var key=Configuration["JwtOptions:Key"];
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = true
+                };
+                options.Events = new JwtBearerEvents()
+                {
+                    OnTokenValidated = (context) =>
+                    {
+                        //context.Principal.Identity is ClaimsIdentity
+                        //So casting it to ClaimsIdentity provides all generated claims
+                        //And for an extra token validation they might be usefull
+                        var name = context.Principal.Identity.Name;
+                        if (string.IsNullOrEmpty(name))
+                        {
+                            context.Fail("Unauthorized. Please re-login");
+                        }
+                        return Task.CompletedTask;
+                    },
+                    OnAuthenticationFailed = (context) =>
+                    {
+                        
+                        return Task.CompletedTask;
+                    }
+                };
+            });
             services.AddAutoMapper(
                 Assembly.GetAssembly(typeof(SampleProductsContext)),
                 Assembly.GetAssembly(typeof(TagService)),
                 Assembly.GetExecutingAssembly(),
                 Assembly.GetAssembly(typeof(AspectContext)));
-            
+
             services.AddUnitOfWork<SampleProductsContext>();
-            services.AddScoped<ITagService,TagService>();
+            services.AddScoped<ITagService, TagService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddHttpClient<IPictureService, PictureService>();
+            services.AddScoped<IFileService, FileService>();
+            services.AddHttpClient<IUnsplashClient, UnsplashClient>();
+            services.AddScoped<ICustomerService, CustomerService>();
             // services.AddScoped<ITagService>(x=>);
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,13 +157,98 @@ namespace Sample.Products.Backend.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors(x => x
+                .SetIsOriginAllowed(origin => true)
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseStaticFiles();
+            // app.UseStaticFiles(new StaticFileOptions()
+            // {
+            //     FileProvider = app.ApplicationServices.GetRequiredService<IFileService>(),
+            //     RequestPath = new PathString("/images")
+            // });
 
-            app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            if (true)
             {
-                endpoints.MapControllers();
-            });
+                // return;
+            }
+            var host = app.ApplicationServices;
+            using (var scope = host.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                // var context = services.GetRequiredService<SampleProductsContext>();
+                // context.Database.Migrate();
+            
+                // requires using Microsoft.Extensions.Configuration;
+                // var userManager = host.GetService(typeof(UserManager<Customer>)) as UserManager<Customer>;
+                // var email = "test@sample.com";
+                // Set password with the Secret Manager tool.
+                // dotnet user-secrets set SeedUserPW <pw>
+            
+                try
+                {
+                    // var FirstUser=userManager.FindByEmailAsync(email).ConfigureAwait(true).GetAwaiter().GetResult();
+                    // if(FirstUser == null)
+                    // {
+                    //     var use =userManager.CreateAsync(new Customer(email, "Sample"), "Abc123+").GetAwaiter().GetResult();
+                    //     FirstUser = userManager.FindByEmailAsync(email).ConfigureAwait(true).GetAwaiter().GetResult();
+                    //     var roles = new[] { SampleRoles.Admin};
+                    //     var roleManager = host.GetRequiredService<RoleManager<RegisteredRole>>();
+                    //     roles.ToList().ForEach((val)=> {
+                    //         roleManager.CreateAsync(new RegisteredRole(val)).ConfigureAwait(false).GetAwaiter()
+                    //             .GetResult();
+                    //         userManager.AddToRoleAsync(FirstUser,val).ConfigureAwait(false).GetAwaiter().GetResult();
+                    //     });
+                    // }
+            
+                    // var pictureService = services.GetRequiredService<IPictureService>();
+                    //
+                    // var pics = pictureService.GetBinaryLessPictures();
+                    // foreach (var picture in pics.Entity.Items)
+                    // {
+                    //     pictureService.SetPictureBinaryFromFile(picture);
+                    // }
+                    //
+                    // pics = pictureService.GetBinaryLessPictures();
+                    // if (!pics.Entity.Items.IsNullOrEmpty())
+                    // {
+                    //     var splashService = services.GetRequiredService<IUnsplashClient>();
+                    //     var clientFactory = services.GetRequiredService<IHttpClientFactory>();
+                    //     var client = clientFactory.CreateClient();
+                    //     var pictures = splashService.GetRandomPicture();
+                    //     foreach (var picture in pics.Entity.Items)
+                    //     {
+                    //         var index = pics.Entity.Items.ToList().IndexOf(picture) + 1;
+                    //         var pictureIndex = index % 30;
+                    //         if (index > 1 && pictureIndex == 1)
+                    //         {
+                    //             pictures = splashService.GetRandomPicture();
+                    //         }
+                    //
+                    //         var response = client.GetAsync(pictures.ElementAt(pictureIndex).urls.raw)
+                    //             .ConfigureAwait(true).GetAwaiter()
+                    //             .GetResult();
+                    //         using var content = response.Content.ReadAsStreamAsync().ConfigureAwait(true).GetAwaiter()
+                    //             .GetResult();
+                    //         using var image = Image.Load<Rgba32>(content, out var format);
+                    //
+                    //
+                    //         picture.MimeType = format.DefaultMimeType;
+                    //         picture.BinaryData = pictureService.EncodeImage(image, format, 75);
+                    //         pictureService.UpdatePicture(picture);
+                    //     }
+                    // }
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex.Message, "An error occurred seeding the DB.");
+                }
+            }
         }
     }
 }

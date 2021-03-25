@@ -15,16 +15,16 @@ namespace Sample.Products.Backend.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
+                .HasAnnotation("ProductVersion", "3.1.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -48,7 +48,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -128,7 +128,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -158,7 +158,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -166,7 +166,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PictureId")
+                    b.Property<int?>("PictureId")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("TimeStamp")
@@ -181,7 +181,8 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.HasIndex("ParentId");
 
                     b.HasIndex("PictureId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PictureId] IS NOT NULL");
 
                     b.ToTable("Categories");
                 });
@@ -200,8 +201,8 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -213,12 +214,12 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -236,19 +237,19 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
                     b.HasIndex("Id");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
+                        .HasName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
+                        .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("Customers");
@@ -259,7 +260,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AltAttribute")
                         .HasColumnType("nvarchar(max)");
@@ -299,7 +300,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
@@ -336,31 +337,29 @@ namespace Sample.Products.Backend.Api.Migrations
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.ProductCategory", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte[]>("TimeStamp")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId", "CategoryId");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("Id");
 
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductCategory");
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.ProductPicture", b =>
@@ -374,7 +373,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte[]>("TimeStamp")
                         .IsConcurrencyToken()
@@ -392,34 +391,27 @@ namespace Sample.Products.Backend.Api.Migrations
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.ProductTag", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("TagId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte[]>("TimeStamp")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
+                    b.HasKey("TagId", "ProductId");
 
                     b.HasIndex("Id");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("TagId");
 
                     b.ToTable("ProductTags");
                 });
@@ -435,12 +427,12 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
@@ -448,7 +440,7 @@ namespace Sample.Products.Backend.Api.Migrations
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
+                        .HasName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("RegisteredRoles");
@@ -459,7 +451,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -532,8 +524,6 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.HasOne("Sample.Products.Backend.Entities.Concrete.Tables.Picture", "Picture")
                         .WithOne("Brand")
                         .HasForeignKey("Sample.Products.Backend.Entities.Concrete.Tables.Brand", "PictureId");
-
-                    b.Navigation("Picture");
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Category", b =>
@@ -544,13 +534,7 @@ namespace Sample.Products.Backend.Api.Migrations
 
                     b.HasOne("Sample.Products.Backend.Entities.Concrete.Tables.Picture", "Picture")
                         .WithOne("Category")
-                        .HasForeignKey("Sample.Products.Backend.Entities.Concrete.Tables.Category", "PictureId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ParentCategory");
-
-                    b.Navigation("Picture");
+                        .HasForeignKey("Sample.Products.Backend.Entities.Concrete.Tables.Category", "PictureId");
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Product", b =>
@@ -560,8 +544,6 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasForeignKey("Sample.Products.Backend.Entities.Concrete.Tables.Product", "BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Brand");
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.ProductCategory", b =>
@@ -577,10 +559,6 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.ProductPicture", b =>
@@ -596,18 +574,10 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Picture");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.ProductTag", b =>
                 {
-                    b.HasOne("Sample.Products.Backend.Entities.Concrete.Tables.Category", null)
-                        .WithMany("ProductTags")
-                        .HasForeignKey("CategoryId");
-
                     b.HasOne("Sample.Products.Backend.Entities.Concrete.Tables.Product", "Product")
                         .WithMany("ProductTags")
                         .HasForeignKey("ProductId")
@@ -619,47 +589,6 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Tag");
-                });
-
-            modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Brand", b =>
-                {
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Category", b =>
-                {
-                    b.Navigation("ProductCategories");
-
-                    b.Navigation("ProductTags");
-
-                    b.Navigation("SubCategories");
-                });
-
-            modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Picture", b =>
-                {
-                    b.Navigation("Brand");
-
-                    b.Navigation("Category");
-
-                    b.Navigation("ProductPictures");
-                });
-
-            modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Product", b =>
-                {
-                    b.Navigation("ProductCategories");
-
-                    b.Navigation("ProductPictures");
-
-                    b.Navigation("ProductTags");
-                });
-
-            modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Tag", b =>
-                {
-                    b.Navigation("ProductTags");
                 });
 #pragma warning restore 612, 618
         }

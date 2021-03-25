@@ -5,7 +5,6 @@ namespace Sample.Products.Backend.Entities.Concrete.Tables
 {
     public class Picture:BaseEntity
     {
-        public int Id { get; set; }
         public string MimeType { get; set; }
 
         public string SeoFilename { get; set; }
@@ -22,7 +21,7 @@ namespace Sample.Products.Backend.Entities.Concrete.Tables
         public byte[] BinaryData { get; set; }
         public virtual Category Category { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        // public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<ProductPicture> ProductPictures { get; set; }
     }
 }

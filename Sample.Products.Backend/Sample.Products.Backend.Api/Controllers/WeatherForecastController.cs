@@ -19,20 +19,29 @@ namespace Sample.Products.Backend.Api.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IProductService _productService;
+        private readonly ICategoryService _categoryService;
         private readonly ITagService _tagService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, ITagService tagService,
-            IServiceProvider serviceProvider)
+        public WeatherForecastController(
+            ILogger<WeatherForecastController> logger,
+            ITagService tagService,
+            IServiceProvider serviceProvider,
+            IProductService productService,
+            ICategoryService categoryService)
         {
             _logger = logger;
+            _productService = TransparentProxy<IProductService>.GenerateProxy(productService, serviceProvider);
+            _categoryService = TransparentProxy<ICategoryService>.GenerateProxy(categoryService, serviceProvider);
             _tagService = TransparentProxy<ITagService>.GenerateProxy(tagService, serviceProvider);
-            // TransparentProxy<ITagService>.GenerateProxy(tagService,serviceProvider);
         }
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            _tagService.GetTagById(1);
+           // var tag= _tagService.GetTagById(1);
+           //  var cat=_categoryService.GetProductCategories(348);
+           //  var product=_productService.GetProductById(1);
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
                 {

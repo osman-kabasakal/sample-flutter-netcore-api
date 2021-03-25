@@ -4,7 +4,6 @@ namespace Sample.Products.Backend.Entities.Concrete.Tables
 {
     public class ProductTag:BaseEntity
     {
-        public int Id { get; set; }
         public int ProductId { get; set; }
         public int TagId { get; set; }
 
