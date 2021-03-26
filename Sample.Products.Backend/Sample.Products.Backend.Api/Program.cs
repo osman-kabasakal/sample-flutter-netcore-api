@@ -18,6 +18,9 @@ using Sample.Products.Backend.DataAccess.Concrete.EntityFramework.Context;
 using Sample.Products.Backend.Entities.Concrete.Tables;
 using SixLabors.ImageSharp;
 using Microsoft.Extensions.Configuration;
+using Azure.Extensions.AspNetCore.Configuration.Secrets;
+using Azure.Security.KeyVault.Secrets;
+using Azure.Identity;
 
 namespace Sample.Products.Backend.Api
 {
@@ -31,6 +34,18 @@ namespace Sample.Products.Backend.Api
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+            //.ConfigureAppConfiguration(
+                //(context, configure) =>
+                //{
+                //    if (context.HostingEnvironment.IsProduction())
+                //    {
+                //        var builtConfig = configure.Build();
+                //        var secretClient = new SecretClient(
+                //            new Uri($"https://{builtConfig["KeyVaultName"]}.vault.azure.net/"),
+                //            new DefaultAzureCredential());
+                //        configure.AddAzureKeyVault(secretClient, new KeyVaultSecretManager());
+                //    }
+                //})
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

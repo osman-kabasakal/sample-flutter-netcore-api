@@ -45,7 +45,8 @@ namespace Sample.Products.Backend.Api
     {
         private IWebHostEnvironment _environment;
 
-        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment
+            )
         {
             Configuration = configuration;
             _environment = environment;
@@ -84,10 +85,16 @@ namespace Sample.Products.Backend.Api
             services.AddScoped<ISetupManager, SetupManager>();
             services.AddDbContext<SampleProductsContext>(options =>
             {
-                options.UseSqlServer(
+                var conString = _environment.IsDevelopment() ?
                     Configuration
-                        .GetConnectionString(_environment.IsDevelopment() ? "DebugConnection" : "DefaultConnection")
-                        .TrimEnd(';', ' ') + ";MultipleActiveResultSets=true;", sqlServerOptionsAction: opt =>
+                        .GetConnectionString("DebugConnection").TrimEnd(';', ' ') + ";MultipleActiveResultSets=true;"
+                        : Configuration
+                        .GetConnectionString("DefaultConnection");
+                // conString=Configuration
+                //     .GetConnectionString("DefaultConnection");
+                options.UseSqlServer(
+                    conString
+                        , sqlServerOptionsAction: opt =>
                     {
                         opt.CommandTimeout(180);
                         opt.MigrationsAssembly("Sample.Products.Backend.Api");

@@ -24,6 +24,6 @@ namespace Sample.Products.Backend.Api.Models
         public ICollection<int> CategoryIds { get; set; }
         public ICollection<int> PictureIds { get; set; }
 
-        public  ICollection<CategoryModel> Categories { get; set; }
+        // public  ICollection<CategoryModel> Categories { get; set; }
     }
 }
