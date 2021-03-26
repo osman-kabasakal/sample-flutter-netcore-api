@@ -7,7 +7,7 @@ using Sample.Products.Backend.Core.Aspects.Interfaces;
 namespace Sample.Products.Backend.Business.Concrete.Attributes
 {
     [AttributeUsage(AttributeTargets.Method)]
-    public class CatchErrorAttribute:AspectBaseAttribute,INRunAspect
+    public class CatchErrorAttribute:AspectBaseAttribute,INRunAspect,ITypeAspectForMethods
     {
         
         public object OnRun<T>(MethodInfo method, T decorate, object[] args)

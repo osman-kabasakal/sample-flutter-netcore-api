@@ -9,10 +9,8 @@ namespace Sample.Products.Backend.Entities.Concrete.Builders
     {
         public override void UpConfigure(EntityTypeBuilder<Brand> builder)
         {
+            
             builder.ToTable("Brands");
-            builder.Property(x => x.Id).ValueGeneratedOnAdd().IsRequired();
-            builder.HasKey( x => x.Id);
-            builder.HasIndex(x => x.Id);
             builder.Property(x => x.Name).IsRequired();
             builder.Property(x => x.PictureId).IsRequired(false);
             builder.HasOne(x => x.Picture).WithOne(x => x.Brand).HasForeignKey<Brand>(x=>x.PictureId);

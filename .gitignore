@@ -405,3 +405,5 @@ ASALocalRun/
 .localhistory/
 
 *.DS_Store
+
+build-api/

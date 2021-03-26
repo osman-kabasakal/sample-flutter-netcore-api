@@ -15,16 +15,16 @@ namespace Sample.Products.Backend.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
+                .HasAnnotation("ProductVersion", "3.1.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -48,7 +48,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -128,7 +128,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -144,13 +144,513 @@ namespace Sample.Products.Backend.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
-
                     b.HasIndex("PictureId")
                         .IsUnique()
                         .HasFilter("[PictureId] IS NOT NULL");
 
                     b.ToTable("Brands");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est la"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "ut labore et do"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmo"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "aute irure dolor in reprehen"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "exercitation ullamco l"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "quis nostrud exercitation ullamco laboris nisi "
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "minim "
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris "
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "borum.Lorem ipsum dolor sit amet, consec"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore "
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "deseru"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "sint occaecat cupidatat non "
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Duis aute irure dolor in reprehenderit in vo"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat n"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "adipiscing elit, sed do eiusmod tempor incididunt ut lab"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisci"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Name = "cillum dolore eu fugiat nulla pariatur. Ex"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Name = "adipis"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Name = "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui o"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Name = "irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fug"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Name = "et dolo"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Name = "magna aliqua. Ut enim ad minim "
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Name = "magna"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Name = "Duis aute irure dolor in repreh"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Name = "i"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Name = "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim "
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Name = "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Name = "quis "
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Name = "Excepteur sint occaecat cupidatat non proident, sunt in cul"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Name = "sint occaecat cupidatat non proident, sunt in culpa qui o"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Name = "in reprehenderit in voluptate velit"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Name = "elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, q"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Name = "adipiscing elit, sed do eiusmod tempor incididunt ut "
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Name = "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qu"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Name = "dolor in reprehenderit in volupt"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Name = "anim id est la"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Name = "Excepteur sint occaecat cupidatat non proident, sunt in culpa qu"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Name = "elit, sed do eiusmod tempor incididunt ut labore e"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Name = "enim ad minim veniam, quis nostrud exercitatio"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Name = "ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Name = "cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat no"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Name = "lab"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Name = "culpa qui of"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Name = "m.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ei"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Name = "irure dolor in reprehenderit in voluptat"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Name = "in culpa qui officia deserunt mollit anim id"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Name = "deserunt mol"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Name = "id est laborum.Lorem ipsum dolor sit amet, consectet"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Name = "nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Name = "id es"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Name = "labore et dolore "
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Name = "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur si"
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Name = "consectetur adipis"
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Name = "exercitation ullamco laboris nisi ut aliquip ex ea commodo con"
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Name = "non p"
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Name = "ut aliquip ex ea commodo consequat. Duis aute i"
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Name = "orum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut la"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Name = "deserunt mollit anim id est lab"
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Name = "ipsum dolor"
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Name = "id est laborum.Lorem ipsum dolor"
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Name = "magna aliqua. Ut enim ad minim venia"
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Name = "ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in v"
+                        },
+                        new
+                        {
+                            Id = 65,
+                            Name = "sunt in culpa"
+                        },
+                        new
+                        {
+                            Id = 66,
+                            Name = "aute irure dolor in "
+                        },
+                        new
+                        {
+                            Id = 67,
+                            Name = "quis nostrud exercitation ullamco laboris nis"
+                        },
+                        new
+                        {
+                            Id = 68,
+                            Name = "Excepteur sint "
+                        },
+                        new
+                        {
+                            Id = 69,
+                            Name = "esse c"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Name = "Excepteur sint "
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Name = "officia deserunt mollit anim id est labor"
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Name = "ut labore et dolore magna aliqua. Ut enim ad minim veniam, qu"
+                        },
+                        new
+                        {
+                            Id = 73,
+                            Name = "non proident, sunt in"
+                        },
+                        new
+                        {
+                            Id = 74,
+                            Name = "laborum.Lorem ipsum"
+                        },
+                        new
+                        {
+                            Id = 75,
+                            Name = "sed do eiusmod tempor incididunt ut labore et dolore "
+                        },
+                        new
+                        {
+                            Id = 76,
+                            Name = "Duis aute irure dolor in reprehender"
+                        },
+                        new
+                        {
+                            Id = 77,
+                            Name = "exercitation ullamco laboris nisi ut aliquip ex ea commodo conse"
+                        },
+                        new
+                        {
+                            Id = 78,
+                            Name = "id est laborum.Lorem ipsum dolor sit amet, consec"
+                        },
+                        new
+                        {
+                            Id = 79,
+                            Name = "sit amet, consectetur adipiscing elit, sed"
+                        },
+                        new
+                        {
+                            Id = 80,
+                            Name = "dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupida"
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Name = "dolore magna aliqua. Ut enim ad minim veniam,"
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Name = "non proident, sunt in culpa qu"
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Name = "commodo consequat. Duis aut"
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Name = "veniam, quis nostrud exercitati"
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Name = "cillum "
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Name = "conseq"
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Name = "Ut enim ad minim veniam, qui"
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Name = "ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in "
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Name = "elit, sed do eiusmod tempor incididunt ut labore et dolor"
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Name = "ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure"
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Name = "pariatur. Excepteur sint occaecat cupidatat non proident, su"
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Name = "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in volupt"
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Name = "nostrud exerci"
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Name = "dolore eu fugiat nu"
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Name = "dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui "
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Name = "sit amet, consectetur adipiscing elit, sed do eiusmod t"
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Name = "qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consect"
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Name = "amet, consectetur adipisci"
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Name = "deserunt mollit anim id est "
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Name = "sint occaecat cupidatat non proident, sunt in "
+                        });
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Category", b =>
@@ -158,7 +658,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -166,7 +666,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PictureId")
+                    b.Property<int?>("PictureId")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("TimeStamp")
@@ -176,20 +676,267 @@ namespace Sample.Products.Backend.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
-
                     b.HasIndex("ParentId");
 
                     b.HasIndex("PictureId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PictureId] IS NOT NULL");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            Name = "molli",
+                            PictureId = 1024
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "consequ",
+                            PictureId = 1020
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "aliqu",
+                            PictureId = 1066
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "nulla par",
+                            PictureId = 1037
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "sit ame",
+                            PictureId = 1005
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "ex ea commod",
+                            ParentId = 4,
+                            PictureId = 1084
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "aute ir",
+                            ParentId = 5,
+                            PictureId = 1017
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "in voluptat",
+                            ParentId = 2,
+                            PictureId = 1089
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "adipis",
+                            ParentId = 3,
+                            PictureId = 1059
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "anim id",
+                            ParentId = 2,
+                            PictureId = 1081
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "ut labore",
+                            ParentId = 3,
+                            PictureId = 1036
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "sunt in",
+                            ParentId = 6,
+                            PictureId = 1012
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "incidi",
+                            ParentId = 3,
+                            PictureId = 1051
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Name = "aliqua. Ut",
+                            ParentId = 5,
+                            PictureId = 1022
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Name = "aute iru",
+                            ParentId = 4,
+                            PictureId = 1030
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Name = "ullamco l",
+                            ParentId = 15,
+                            PictureId = 1046
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Name = "et dolore",
+                            ParentId = 8,
+                            PictureId = 1075
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Name = "nisi u",
+                            ParentId = 19,
+                            PictureId = 1039
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Name = "cupidatat n",
+                            ParentId = 24,
+                            PictureId = 1090
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Name = "culpa qui o",
+                            ParentId = 4,
+                            PictureId = 1057
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Name = "amet, consec",
+                            ParentId = 5,
+                            PictureId = 1065
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Name = "consequat. ",
+                            ParentId = 23,
+                            PictureId = 1009
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Name = "et do",
+                            ParentId = 9,
+                            PictureId = 1019
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Name = "rum.Lorem",
+                            ParentId = 24,
+                            PictureId = 1031
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Name = "cillum d",
+                            ParentId = 18,
+                            PictureId = 1079
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Name = "consequat.",
+                            ParentId = 21,
+                            PictureId = 1035
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Name = "dolore eu",
+                            ParentId = 15,
+                            PictureId = 1060
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Name = "dolor in",
+                            ParentId = 8,
+                            PictureId = 1043
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Name = "cupida",
+                            ParentId = 36,
+                            PictureId = 1044
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Name = "veniam, quis",
+                            ParentId = 29,
+                            PictureId = 1063
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Name = "rum.Lorem i",
+                            ParentId = 21,
+                            PictureId = 1067
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Name = "Excepteur",
+                            ParentId = 14,
+                            PictureId = 1013
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Name = "sint occaec",
+                            ParentId = 38,
+                            PictureId = 1006
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Name = "veniam, qu",
+                            ParentId = 12,
+                            PictureId = 1026
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Name = "mollit ani",
+                            ParentId = 8,
+                            PictureId = 1033
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Name = "labore ",
+                            ParentId = 3,
+                            PictureId = 1053
+                        });
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Customer", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
@@ -200,8 +947,8 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -213,12 +960,12 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -236,19 +983,17 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
-
                     b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
+                        .HasName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
+                        .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("Customers");
@@ -259,7 +1004,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AltAttribute")
                         .HasColumnType("nvarchar(max)");
@@ -289,9 +1034,909 @@ namespace Sample.Products.Backend.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
-
                     b.ToTable("Pictures");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1011,
+                            AltAttribute = "elit, sed ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "deserunt mollit anim id est laboru",
+                            TitleAttribute = "nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culp",
+                            VirtualPath = "/images/001011.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1012,
+                            AltAttribute = "consequat. Duis aute irure dolor in reprehenderit in ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "Duis aute irure dolor in reprehenderit in voluptate velit esse c",
+                            TitleAttribute = "labore et dolore magna aliqua. Ut enim ad minim ",
+                            VirtualPath = "/images/001012.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1013,
+                            AltAttribute = "Ut enim ad minim ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consect",
+                            TitleAttribute = "laboris nisi ut aliquip ex ea commodo consequat. ",
+                            VirtualPath = "/images/001013.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1014,
+                            AltAttribute = "ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing",
+                            TitleAttribute = "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidata",
+                            VirtualPath = "/images/001014.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1015,
+                            AltAttribute = "culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit ame",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "dolor in reprehenderit in voluptate velit esse cillum dolore eu ",
+                            TitleAttribute = "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco l",
+                            VirtualPath = "/images/001015.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1016,
+                            AltAttribute = "adipiscing elit, sed do eiusmod tempo",
+                            IsNew = false,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum d",
+                            TitleAttribute = "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo ",
+                            VirtualPath = "/images/001016.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1017,
+                            AltAttribute = "nulla p",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "consectetur adipiscing elit, sed do eiusmod tempor i",
+                            TitleAttribute = "occaecat cupidatat non proident, sunt in culpa qui officia des",
+                            VirtualPath = "/images/001017.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1018,
+                            AltAttribute = "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "ut aliquip ex ea commodo consequat. Duis aute irure ",
+                            TitleAttribute = "ullam",
+                            VirtualPath = "/images/001018.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1019,
+                            AltAttribute = "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in volupt",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "eiusmod tempor incididunt ut labore et dolore magna al",
+                            TitleAttribute = "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sin",
+                            VirtualPath = "/images/001019.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1020,
+                            AltAttribute = "nulla pariatur. Ex",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla",
+                            TitleAttribute = "ipsum dolor sit amet, ",
+                            VirtualPath = "/images/001020.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1021,
+                            AltAttribute = "elit, sed do eiusmod tempor inci",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor",
+                            TitleAttribute = "amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor",
+                            VirtualPath = "/images/001021.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1022,
+                            AltAttribute = "nisi ut aliquip ex ea commodo consequat. Du",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "nulla pariatur. E",
+                            TitleAttribute = "veniam, quis nostrud exercitation ullamco laboris nisi ut aliqui",
+                            VirtualPath = "/images/001022.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1023,
+                            AltAttribute = "minim veniam, quis ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "adipiscing elit, sed do eiusmod tempor incididunt ut l",
+                            TitleAttribute = "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidata",
+                            VirtualPath = "/images/001023.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1024,
+                            AltAttribute = "id est laborum.Lorem ipsum dolor sit amet, consectetur adip",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repre",
+                            TitleAttribute = "anim id est laborum.Lorem ipsum dolor sit amet, co",
+                            VirtualPath = "/images/001024.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1025,
+                            AltAttribute = "sit amet, consectetur adipiscing elit, sed do eiusmod tempor ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "Ut enim ad minim venia",
+                            TitleAttribute = "veniam, quis nostrud exercitation ulla",
+                            VirtualPath = "/images/001025.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1026,
+                            AltAttribute = "adi",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "irure dolor in reprehenderit i",
+                            TitleAttribute = "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et do",
+                            VirtualPath = "/images/001026.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1028,
+                            AltAttribute = "adipiscing elit, ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt i",
+                            TitleAttribute = "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderi",
+                            VirtualPath = "/images/001028.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1029,
+                            AltAttribute = "dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in c",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "irure dolor in reprehenderit in voluptate velit esse cillum dolore eu f",
+                            TitleAttribute = "voluptate ",
+                            VirtualPath = "/images/001029.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1030,
+                            AltAttribute = "aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu f",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "reprehenderit in voluptate",
+                            TitleAttribute = "dolor in reprehe",
+                            VirtualPath = "/images/001030.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1031,
+                            AltAttribute = "o",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure",
+                            TitleAttribute = "nostrud",
+                            VirtualPath = "/images/001031.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1032,
+                            AltAttribute = "et dolore magna aliqua. Ut enim",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consecte",
+                            TitleAttribute = "aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat",
+                            VirtualPath = "/images/001032.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1033,
+                            AltAttribute = "anim id est laborum.L",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "qui officia deserunt mollit anim id est laborum.Lor",
+                            TitleAttribute = "tempor incididunt ut labore et dolore magna ali",
+                            VirtualPath = "/images/001033.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1034,
+                            AltAttribute = "mollit anim id est ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "Ut enim ad minim veniam, quis nostrud exerci",
+                            TitleAttribute = "ea commodo consequat. Duis aute irure dolor",
+                            VirtualPath = "/images/001034.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1035,
+                            AltAttribute = "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "nulla pariatur. Excepteur sint occaecat cupidatat ",
+                            TitleAttribute = "ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa",
+                            VirtualPath = "/images/001035.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1036,
+                            AltAttribute = "id est laborum.Lorem ipsum dolor sit amet, c",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in cu",
+                            TitleAttribute = "Excepteur sint occaecat cupidatat no",
+                            VirtualPath = "/images/001036.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1037,
+                            AltAttribute = "pariatur. Excepteur sint occaecat cupidatat non proident, sunt",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "dolore magna aliqua. Ut enim ad minim venia",
+                            TitleAttribute = "fugiat n",
+                            VirtualPath = "/images/001037.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1038,
+                            AltAttribute = "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nis",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut ",
+                            TitleAttribute = "aute ir",
+                            VirtualPath = "/images/001038.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1039,
+                            AltAttribute = "sunt in culpa qui officia deserunt m",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+                            TitleAttribute = "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru",
+                            VirtualPath = "/images/001039.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1040,
+                            AltAttribute = "Duis aute irure d",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ull",
+                            TitleAttribute = "elit, sed do eiusmod t",
+                            VirtualPath = "/images/001040.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1041,
+                            AltAttribute = "incididunt ut labore et dolore",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui offic",
+                            TitleAttribute = "cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est labor",
+                            VirtualPath = "/images/001041.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1072,
+                            AltAttribute = "sint occaecat cupidatat non proident, sunt in culpa qu",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit",
+                            TitleAttribute = "cillum dol",
+                            VirtualPath = "/images/001072.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1073,
+                            AltAttribute = "nulla pariat",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "anim id est laborum.Lorem",
+                            TitleAttribute = "tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nos",
+                            VirtualPath = "/images/001073.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1074,
+                            AltAttribute = "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, conse",
+                            TitleAttribute = "ipsum dol",
+                            VirtualPath = "/images/001074.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1075,
+                            AltAttribute = "cillum dolore e",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "ad minim veniam, qu",
+                            TitleAttribute = "velit esse cillum dolore eu fugiat nulla par",
+                            VirtualPath = "/images/001075.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1076,
+                            AltAttribute = "consequat. Duis aute irure dolor in reprehenderit in voluptate ve",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "ex ea commodo co",
+                            TitleAttribute = "Ut enim ad minim ven",
+                            VirtualPath = "/images/001076.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1077,
+                            AltAttribute = "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat n",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "um.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do",
+                            TitleAttribute = "qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscin",
+                            VirtualPath = "/images/001077.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1078,
+                            AltAttribute = "cillum dolore eu fugiat nulla pariatur. Except",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "a",
+                            TitleAttribute = "enim ad m",
+                            VirtualPath = "/images/001078.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1079,
+                            AltAttribute = "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dol",
+                            TitleAttribute = "cupidatat non pr",
+                            VirtualPath = "/images/001079.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1080,
+                            AltAttribute = "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mi",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "mollit anim id est laborum.Lorem ipsum d",
+                            TitleAttribute = "laboris nisi ut aliquip ex ",
+                            VirtualPath = "/images/001080.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1081,
+                            AltAttribute = "ni",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "in voluptate velit esse cillum do",
+                            TitleAttribute = "pariatur. Excepteur sint occa",
+                            VirtualPath = "/images/001081.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1082,
+                            AltAttribute = "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehende",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "eu fugiat nulla pariatur. Excepte",
+                            TitleAttribute = "do eiusmod tempor incididunt ut labore et dolore magna a",
+                            VirtualPath = "/images/001082.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1083,
+                            AltAttribute = "irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Ex",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "proident, sunt in culpa qui officia d",
+                            TitleAttribute = "in culpa qui officia deserunt mollit anim id e",
+                            VirtualPath = "/images/001083.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1084,
+                            AltAttribute = "orum.Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "dolor in reprehenderit in voluptate velit ",
+                            TitleAttribute = "veniam, quis nostrud exercitation ullamco laboris nisi",
+                            VirtualPath = "/images/001084.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1085,
+                            AltAttribute = "dolor sit amet, consectetur adipiscing elit, sed ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "amet, cons",
+                            TitleAttribute = "adipiscing elit, sed do eiusmod tempor incididunt ut labore et d",
+                            VirtualPath = "/images/001085.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1086,
+                            AltAttribute = "commodo consequat. Duis aute irure dolor in reprehenderit i",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "cupidatat non proident, sunt in culpa qui offic",
+                            TitleAttribute = "Duis aute irure dolor in r",
+                            VirtualPath = "/images/001086.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1087,
+                            AltAttribute = "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo conseq",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim a",
+                            TitleAttribute = "culpa qui officia deserunt mollit anim id est labo",
+                            VirtualPath = "/images/001087.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1088,
+                            AltAttribute = "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "veniam, quis nostrud exerci",
+                            TitleAttribute = "in reprehenderit in voluptate velit esse cill",
+                            VirtualPath = "/images/001088.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1089,
+                            AltAttribute = "ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "elit, sed do eiusmod tempor incididunt ut labore et d",
+                            TitleAttribute = "s",
+                            VirtualPath = "/images/001089.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1090,
+                            AltAttribute = "est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "quis nostrud exercitation ullamco laboris nisi ut ",
+                            TitleAttribute = "incididunt ut labore et do",
+                            VirtualPath = "/images/001090.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1091,
+                            AltAttribute = "voluptate velit esse cillum dolore eu fugi",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor",
+                            TitleAttribute = "aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat ",
+                            VirtualPath = "/images/001091.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1042,
+                            AltAttribute = "reprehenderit in volup",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "dolor s",
+                            TitleAttribute = "sint occaecat cupidatat non proident, sunt in culpa qui officia deser",
+                            VirtualPath = "/images/001042.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1043,
+                            AltAttribute = "aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "veniam, quis nostrud exercitation ullamco labori",
+                            TitleAttribute = "consectet",
+                            VirtualPath = "/images/001043.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1044,
+                            AltAttribute = "minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "mollit anim id est laborum.Lorem ipsum dolor sit ame",
+                            TitleAttribute = "ex ea commodo consequat. Duis au",
+                            VirtualPath = "/images/001044.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1045,
+                            AltAttribute = "nu",
+                            IsNew = false,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "anim ",
+                            TitleAttribute = "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderi",
+                            VirtualPath = "/images/001045.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1046,
+                            AltAttribute = "mollit anim i",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+                            TitleAttribute = "ullamco laboris nisi ut aliquip ex ea commodo ",
+                            VirtualPath = "/images/001046.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1047,
+                            AltAttribute = "nostrud exercitation ullamco laboris nisi ut aliq",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adip",
+                            TitleAttribute = "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id es",
+                            VirtualPath = "/images/001047.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1048,
+                            AltAttribute = "orum.Lorem ipsum dolor sit amet, consec",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "Excepteur sint occaecat cupidatat non pr",
+                            TitleAttribute = "dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat",
+                            VirtualPath = "/images/001048.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1049,
+                            AltAttribute = "proident, sunt in culpa qui officia deserunt mollit anim id est la",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "reprehenderit in voluptate velit esse cillum",
+                            TitleAttribute = "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen",
+                            VirtualPath = "/images/001049.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1050,
+                            AltAttribute = "ut labore et dolore magna aliqu",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "laboris nisi ut aliquip ex ea commodo conseq",
+                            TitleAttribute = "occaecat cupidatat non proident, sunt ",
+                            VirtualPath = "/images/001050.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1051,
+                            AltAttribute = "aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "officia deserunt mollit anim id est laborum.Lorem ip",
+                            TitleAttribute = "nulla pariatur. Excepteur si",
+                            VirtualPath = "/images/001051.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1052,
+                            AltAttribute = "quis nostrud exercitati",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "ad",
+                            TitleAttribute = "mollit anim id est laborum.L",
+                            VirtualPath = "/images/001052.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1053,
+                            AltAttribute = "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "voluptate velit esse cillum dolore",
+                            TitleAttribute = "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",
+                            VirtualPath = "/images/001053.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1054,
+                            AltAttribute = "do eiusmod tempor inci",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat",
+                            TitleAttribute = "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in volupt",
+                            VirtualPath = "/images/001054.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1055,
+                            AltAttribute = "adipiscing elit, sed do eiusmod",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lor",
+                            TitleAttribute = "sunt in culpa qui of",
+                            VirtualPath = "/images/001055.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1056,
+                            AltAttribute = "quis nostrud exercitation ullamco laboris nisi",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "sit amet, consectetur ",
+                            TitleAttribute = "ut labore et dolore magna ",
+                            VirtualPath = "/images/001056.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1057,
+                            AltAttribute = "irure dolor in r",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "culpa qui officia deserunt mollit anim id",
+                            TitleAttribute = "adipiscing elit, sed do eiusmod tempor incidid",
+                            VirtualPath = "/images/001057.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1058,
+                            AltAttribute = "officia deserunt mollit anim id est laborum.Lorem ipsum",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "anim id est laborum.Lorem ipsum dolor sit amet, con",
+                            TitleAttribute = "aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamc",
+                            VirtualPath = "/images/001058.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1059,
+                            AltAttribute = "anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisc",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "aliquip ex ea commodo con",
+                            TitleAttribute = "adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ",
+                            VirtualPath = "/images/001059.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1060,
+                            AltAttribute = "ex ea commodo consequat. Duis aute ir",
+                            IsNew = false,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "dolor in reprehenderit in voluptate veli",
+                            TitleAttribute = "m.Lorem ipsum dolor sit amet, co",
+                            VirtualPath = "/images/001060.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1061,
+                            AltAttribute = "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco",
+                            IsNew = false,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "est laborum.Lorem ipsum dol",
+                            TitleAttribute = "amet, consectetur adipiscing elit, sed",
+                            VirtualPath = "/images/001061.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1062,
+                            AltAttribute = "in c",
+                            IsNew = false,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "Excepteur sint occaecat cupidatat n",
+                            TitleAttribute = "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit es",
+                            VirtualPath = "/images/001062.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1063,
+                            AltAttribute = "sunt in culpa qui officia deserunt mollit",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "aliqua. Ut enim ad minim veniam, quis nostrud exercitation u",
+                            TitleAttribute = "ullamco laboris nisi ut aliquip ex ea commod",
+                            VirtualPath = "/images/001063.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1064,
+                            AltAttribute = ".Lorem ipsum dolor sit amet, consectetur adipiscing eli",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                            TitleAttribute = "tempor incididunt ut labore et dolore magna aliqua. Ut en",
+                            VirtualPath = "/images/001064.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1065,
+                            AltAttribute = "nisi ut aliquip ex",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur si",
+                            TitleAttribute = "exercitation ullamco laboris nisi ut aliquip ex ",
+                            VirtualPath = "/images/001065.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1066,
+                            AltAttribute = "adipis",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in",
+                            TitleAttribute = "ulla",
+                            VirtualPath = "/images/001066.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1067,
+                            AltAttribute = "minim veniam, quis nostrud exercitatio",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "et dolore magna aliqua. U",
+                            TitleAttribute = "dolore magna aliqua. Ut enim ad minim veniam, quis nost",
+                            VirtualPath = "/images/001067.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1068,
+                            AltAttribute = "exercitat",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor si",
+                            TitleAttribute = "in voluptate velit esse cillum dolore eu fugiat nulla pariat",
+                            VirtualPath = "/images/001068.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1069,
+                            AltAttribute = "laboris nisi ut aliquip ex ea commodo cons",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "elit, sed",
+                            TitleAttribute = "qui",
+                            VirtualPath = "/images/001069.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1070,
+                            AltAttribute = "ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "adipiscing eli",
+                            TitleAttribute = "occaec",
+                            VirtualPath = "/images/001070.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1071,
+                            AltAttribute = "minim veniam, quis nostrud exercitation ullamco laboris nisi ",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat",
+                            TitleAttribute = "sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et do",
+                            VirtualPath = "/images/001071.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1001,
+                            AltAttribute = "adipiscing elit, sed do ",
+                            IsNew = false,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mo",
+                            TitleAttribute = "tempor incididunt ut labore et do",
+                            VirtualPath = "/images/001001.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1002,
+                            AltAttribute = "ullamc",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
+                            TitleAttribute = "ullamco labori",
+                            VirtualPath = "/images/001002.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1003,
+                            AltAttribute = "qu",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "anim id est laborum.Lorem ipsum dolor sit am",
+                            TitleAttribute = "elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
+                            VirtualPath = "/images/001003.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1004,
+                            AltAttribute = "eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui of",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "sint occaecat cupidatat",
+                            TitleAttribute = "cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat",
+                            VirtualPath = "/images/001004.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1005,
+                            AltAttribute = "culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolo",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "repre",
+                            TitleAttribute = "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitati",
+                            VirtualPath = "/images/001005.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1006,
+                            AltAttribute = "commodo consequat. Duis aute irure dolor in reprehenderit in volupta",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis",
+                            TitleAttribute = "Excepteur sint occaecat cupidatat",
+                            VirtualPath = "/images/001006.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1007,
+                            AltAttribute = "non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "et dolore magna a",
+                            TitleAttribute = "mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adip",
+                            VirtualPath = "/images/001007.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1008,
+                            AltAttribute = "adipisc",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "nostrud exe",
+                            TitleAttribute = "veniam, quis nostrud exercita",
+                            VirtualPath = "/images/001008.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1009,
+                            AltAttribute = "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehende",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "in voluptate velit esse cillum dolore eu fugiat nulla pari",
+                            TitleAttribute = "in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla par",
+                            VirtualPath = "/images/001009.jpeg"
+                        },
+                        new
+                        {
+                            Id = 1010,
+                            AltAttribute = "adipiscing elit,",
+                            IsNew = true,
+                            MimeType = "image/jpeg",
+                            SeoFilename = "tempor incididunt ut labore et dolore magna aliqua. Ut e",
+                            TitleAttribute = "occaecat cupidatat non proident, sunt in culpa qui officia deserunt m",
+                            VirtualPath = "/images/001010.jpeg"
+                        });
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Product", b =>
@@ -299,7 +1944,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
@@ -329,38 +1974,612 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.HasIndex("BrandId")
                         .IsUnique();
 
-                    b.HasIndex("Id");
-
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 206,
+                            BrandId = 96,
+                            Description = "do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru",
+                            Name = "adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim a",
+                            Price = 1806602496.38m,
+                            Quantity = 15296,
+                            ShortDescription = "nostrud exe"
+                        },
+                        new
+                        {
+                            Id = 209,
+                            BrandId = 90,
+                            Description = "amet, consectetur adipiscing elit",
+                            Name = "do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad m",
+                            Price = 197639696.46m,
+                            Quantity = 18354,
+                            ShortDescription = "mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod t"
+                        },
+                        new
+                        {
+                            Id = 212,
+                            BrandId = 66,
+                            Description = "do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nos",
+                            Name = "et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitat",
+                            Price = 1199328128.13m,
+                            Quantity = 16894,
+                            ShortDescription = "anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
+                        },
+                        new
+                        {
+                            Id = 216,
+                            BrandId = 43,
+                            Description = "et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut ",
+                            Name = "ullamco laboris ni",
+                            Price = 1096621696.21m,
+                            Quantity = 21042,
+                            ShortDescription = "Duis aute irure do"
+                        },
+                        new
+                        {
+                            Id = 219,
+                            BrandId = 44,
+                            Description = "nulla pariatur. Excepteur sint occaecat cupidatat no",
+                            Name = "sint occaecat ",
+                            Price = 393824000.32m,
+                            Quantity = 30874,
+                            ShortDescription = "esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cup"
+                        },
+                        new
+                        {
+                            Id = 262,
+                            BrandId = 8,
+                            Description = "sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut ",
+                            Name = "voluptate velit esse",
+                            Price = 459097568.43m,
+                            Quantity = 18985,
+                            ShortDescription = "quis nostrud exercitation ulla"
+                        },
+                        new
+                        {
+                            Id = 295,
+                            BrandId = 7,
+                            Description = "exercitation ullamco laboris nisi ut aliquip ex ea commodo ",
+                            Name = "sed do eiusmod tempor incididunt ut labore et dolore magna ali",
+                            Price = 973344896.66m,
+                            Quantity = 32209,
+                            ShortDescription = "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"
+                        },
+                        new
+                        {
+                            Id = 296,
+                            BrandId = 73,
+                            Description = "et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ull",
+                            Name = "dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun",
+                            Price = 1310967808.50m,
+                            Quantity = 8169,
+                            ShortDescription = "sunt in cu"
+                        },
+                        new
+                        {
+                            Id = 303,
+                            BrandId = 12,
+                            Description = "nisi ut aliquip ex ea commodo consequat. Dui",
+                            Name = "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci",
+                            Price = 937556928.24m,
+                            Quantity = 25618,
+                            ShortDescription = "aliq"
+                        },
+                        new
+                        {
+                            Id = 322,
+                            BrandId = 78,
+                            Description = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore e",
+                            Name = "dolor sit am",
+                            Price = 1057469632.93m,
+                            Quantity = 17058,
+                            ShortDescription = "laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci"
+                        },
+                        new
+                        {
+                            Id = 332,
+                            BrandId = 19,
+                            Description = "aliqua. Ut enim ad minim veniam, quis nostrud exercitation u",
+                            Name = "irure dolor in reprehenderit in voluptate velit esse cill",
+                            Price = 384726336.48m,
+                            Quantity = 27551,
+                            ShortDescription = "incididunt ut labore et dolore magna aliqua. Ut enim ad minim v"
+                        },
+                        new
+                        {
+                            Id = 337,
+                            BrandId = 9,
+                            Description = "commodo consequat. Duis aute irure",
+                            Name = "dolore eu fugiat nulla",
+                            Price = 895406848.25m,
+                            Quantity = 31382,
+                            ShortDescription = "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute ir"
+                        },
+                        new
+                        {
+                            Id = 359,
+                            BrandId = 70,
+                            Description = "dolor in reprehenderit in voluptate velit esse cillum dolore eu",
+                            Name = "labore et dolore magna aliqua. Ut enim ad minim veniam,",
+                            Price = 75513120.55m,
+                            Quantity = 30860,
+                            ShortDescription = "Excepteur sint"
+                        },
+                        new
+                        {
+                            Id = 384,
+                            BrandId = 50,
+                            Description = "exercitation ullamco laboris nisi ut aliquip",
+                            Name = "nulla pariatur. Exce",
+                            Price = 1036171392.97m,
+                            Quantity = 26147,
+                            ShortDescription = "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit e"
+                        },
+                        new
+                        {
+                            Id = 387,
+                            BrandId = 32,
+                            Description = "aliqua. Ut enim ad minim veniam, quis nostrud exercita",
+                            Name = "ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in",
+                            Price = 476802720.41m,
+                            Quantity = 20934,
+                            ShortDescription = "Duis aute irur"
+                        },
+                        new
+                        {
+                            Id = 427,
+                            BrandId = 14,
+                            Description = "ad minim veniam, quis nostrud exercitati",
+                            Name = "Duis aute irure dolor in reprehenderit in voluptate velit ",
+                            Price = 1725532160.78m,
+                            Quantity = 10258,
+                            ShortDescription = "ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in "
+                        },
+                        new
+                        {
+                            Id = 614,
+                            BrandId = 71,
+                            Description = "magna aliqua. Ut enim ad minim veniam, quis nostrud exercitat",
+                            Name = "occaecat cupidatat non proid",
+                            Price = 719484480.64m,
+                            Quantity = 741,
+                            ShortDescription = "mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisc"
+                        },
+                        new
+                        {
+                            Id = 624,
+                            BrandId = 92,
+                            Description = "aute irure dolor in reprehenderit in voluptate velit esse cillum dolor",
+                            Name = "sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dol",
+                            Price = 523793696.99m,
+                            Quantity = 2273,
+                            ShortDescription = "Excepteur sint occaecat cupidatat"
+                        },
+                        new
+                        {
+                            Id = 627,
+                            BrandId = 25,
+                            Description = "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat no",
+                            Name = "cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ip",
+                            Price = 1152418688.50m,
+                            Quantity = 17571,
+                            ShortDescription = "mollit anim id est la"
+                        },
+                        new
+                        {
+                            Id = 638,
+                            BrandId = 86,
+                            Description = "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur si",
+                            Name = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore",
+                            Price = 115699600.54m,
+                            Quantity = 10603,
+                            ShortDescription = "do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr"
+                        },
+                        new
+                        {
+                            Id = 659,
+                            BrandId = 82,
+                            Description = ".",
+                            Name = "sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore ma",
+                            Price = 878492096.20m,
+                            Quantity = 33,
+                            ShortDescription = "non proident, sunt in culpa qui officia deserunt mollit anim id est"
+                        },
+                        new
+                        {
+                            Id = 662,
+                            BrandId = 59,
+                            Description = "commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit ",
+                            Name = "nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo c",
+                            Price = 1644037248.86m,
+                            Quantity = 1303,
+                            ShortDescription = "id est laborum.Lor"
+                        },
+                        new
+                        {
+                            Id = 668,
+                            BrandId = 84,
+                            Description = "eu fugiat nulla pariatur. Excepteur sint occaecat ",
+                            Name = "ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe",
+                            Price = 347287008.97m,
+                            Quantity = 8897,
+                            ShortDescription = "do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad "
+                        },
+                        new
+                        {
+                            Id = 703,
+                            BrandId = 20,
+                            Description = "commodo consequat. Duis aute irure dolor in reprehenderit in volupta",
+                            Name = "et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla",
+                            Price = 1843203072.10m,
+                            Quantity = 18830,
+                            ShortDescription = "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate"
+                        },
+                        new
+                        {
+                            Id = 724,
+                            BrandId = 16,
+                            Description = "sint oc",
+                            Name = "aute irure dolor",
+                            Price = 1686708992.57m,
+                            Quantity = 24854,
+                            ShortDescription = "est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
+                        },
+                        new
+                        {
+                            Id = 731,
+                            BrandId = 37,
+                            Description = "sit amet, consectetur adipiscing e",
+                            Name = "sint occaecat cupidatat non proident, sunt in culpa qui officia d",
+                            Price = 135786144.48m,
+                            Quantity = 1320,
+                            ShortDescription = "ipsum dolor sit amet, consectetur adipiscing eli"
+                        },
+                        new
+                        {
+                            Id = 749,
+                            BrandId = 76,
+                            Description = "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru",
+                            Name = "amet, consectetur adipiscing elit, sed ",
+                            Price = 30524014.96m,
+                            Quantity = 30593,
+                            ShortDescription = "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolo"
+                        },
+                        new
+                        {
+                            Id = 762,
+                            BrandId = 87,
+                            Description = "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupida",
+                            Name = "eu fugiat nulla pariatur. E",
+                            Price = 1134310016.19m,
+                            Quantity = 26105,
+                            ShortDescription = "ut labore "
+                        },
+                        new
+                        {
+                            Id = 763,
+                            BrandId = 89,
+                            Description = "sint occaecat cupi",
+                            Name = "in voluptate velit esse cillum dolore eu fugiat nulla paria",
+                            Price = 619129280.66m,
+                            Quantity = 4870,
+                            ShortDescription = "nulla pariatu"
+                        },
+                        new
+                        {
+                            Id = 764,
+                            BrandId = 67,
+                            Description = "sed do eiusmod tempor incididunt ut labore et dolore",
+                            Name = "laboris nisi ut aliquip ex ea commodo consequat. Duis aute i",
+                            Price = 1073637760.90m,
+                            Quantity = 1804,
+                            ShortDescription = "mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiu"
+                        },
+                        new
+                        {
+                            Id = 765,
+                            BrandId = 54,
+                            Description = "id est laborum.Lorem ipsum dol",
+                            Name = "nulla pariatur. Excepteur sin",
+                            Price = 548577344.50m,
+                            Quantity = 12666,
+                            ShortDescription = "pariatur. Excepteu"
+                        },
+                        new
+                        {
+                            Id = 766,
+                            BrandId = 72,
+                            Description = "amet, consectetur adipiscing",
+                            Name = "sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor",
+                            Price = 167867888.62m,
+                            Quantity = 8194,
+                            ShortDescription = "magna aliqua. Ut enim ad mini"
+                        },
+                        new
+                        {
+                            Id = 767,
+                            BrandId = 74,
+                            Description = "anim id est laborum.Lorem ipsum dolor s",
+                            Name = "nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui",
+                            Price = 220467328.89m,
+                            Quantity = 26266,
+                            ShortDescription = "tempor incididunt ut labore et dolore magna aliqua. Ut enim "
+                        },
+                        new
+                        {
+                            Id = 772,
+                            BrandId = 24,
+                            Description = "in voluptate velit e",
+                            Name = "minim veniam, quis n",
+                            Price = 598342016.73m,
+                            Quantity = 23806,
+                            ShortDescription = "eu fugiat nu"
+                        },
+                        new
+                        {
+                            Id = 782,
+                            BrandId = 65,
+                            Description = "id est laborum.Lorem ipsum dolor sit",
+                            Name = "amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore",
+                            Price = 7009875.65m,
+                            Quantity = 26498,
+                            ShortDescription = "velit esse cillum dolore eu fugiat nulla pariatur. "
+                        },
+                        new
+                        {
+                            Id = 784,
+                            BrandId = 23,
+                            Description = "in r",
+                            Name = "dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in",
+                            Price = 230419680.50m,
+                            Quantity = 1984,
+                            ShortDescription = "adipiscing elit, sed do eiusmod tempor incididunt ut"
+                        });
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.ProductCategory", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte[]>("TimeStamp")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId", "CategoryId");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("Id");
-
-                    b.HasIndex("ProductId");
-
                     b.ToTable("ProductCategory");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 216,
+                            CategoryId = 41,
+                            Id = 2001
+                        },
+                        new
+                        {
+                            ProductId = 322,
+                            CategoryId = 21,
+                            Id = 2002
+                        },
+                        new
+                        {
+                            ProductId = 219,
+                            CategoryId = 12,
+                            Id = 2003
+                        },
+                        new
+                        {
+                            ProductId = 766,
+                            CategoryId = 25,
+                            Id = 2004
+                        },
+                        new
+                        {
+                            ProductId = 764,
+                            CategoryId = 28,
+                            Id = 2008
+                        },
+                        new
+                        {
+                            ProductId = 206,
+                            CategoryId = 52,
+                            Id = 2009
+                        },
+                        new
+                        {
+                            ProductId = 322,
+                            CategoryId = 25,
+                            Id = 2010
+                        },
+                        new
+                        {
+                            ProductId = 763,
+                            CategoryId = 29,
+                            Id = 2011
+                        },
+                        new
+                        {
+                            ProductId = 668,
+                            CategoryId = 41,
+                            Id = 2012
+                        },
+                        new
+                        {
+                            ProductId = 295,
+                            CategoryId = 31,
+                            Id = 2015
+                        },
+                        new
+                        {
+                            ProductId = 322,
+                            CategoryId = 5,
+                            Id = 2017
+                        },
+                        new
+                        {
+                            ProductId = 209,
+                            CategoryId = 11,
+                            Id = 2018
+                        },
+                        new
+                        {
+                            ProductId = 784,
+                            CategoryId = 8,
+                            Id = 2020
+                        },
+                        new
+                        {
+                            ProductId = 627,
+                            CategoryId = 21,
+                            Id = 2021
+                        },
+                        new
+                        {
+                            ProductId = 387,
+                            CategoryId = 8,
+                            Id = 2022
+                        },
+                        new
+                        {
+                            ProductId = 638,
+                            CategoryId = 25,
+                            Id = 2023
+                        },
+                        new
+                        {
+                            ProductId = 206,
+                            CategoryId = 51,
+                            Id = 2024
+                        },
+                        new
+                        {
+                            ProductId = 206,
+                            CategoryId = 8,
+                            Id = 2025
+                        },
+                        new
+                        {
+                            ProductId = 659,
+                            CategoryId = 29,
+                            Id = 2027
+                        },
+                        new
+                        {
+                            ProductId = 427,
+                            CategoryId = 6,
+                            Id = 2028
+                        },
+                        new
+                        {
+                            ProductId = 295,
+                            CategoryId = 43,
+                            Id = 2029
+                        },
+                        new
+                        {
+                            ProductId = 322,
+                            CategoryId = 49,
+                            Id = 2030
+                        },
+                        new
+                        {
+                            ProductId = 772,
+                            CategoryId = 11,
+                            Id = 2032
+                        },
+                        new
+                        {
+                            ProductId = 772,
+                            CategoryId = 3,
+                            Id = 2034
+                        },
+                        new
+                        {
+                            ProductId = 212,
+                            CategoryId = 29,
+                            Id = 2038
+                        },
+                        new
+                        {
+                            ProductId = 766,
+                            CategoryId = 6,
+                            Id = 2039
+                        },
+                        new
+                        {
+                            ProductId = 387,
+                            CategoryId = 3,
+                            Id = 2041
+                        },
+                        new
+                        {
+                            ProductId = 659,
+                            CategoryId = 4,
+                            Id = 2042
+                        },
+                        new
+                        {
+                            ProductId = 766,
+                            CategoryId = 11,
+                            Id = 2043
+                        },
+                        new
+                        {
+                            ProductId = 627,
+                            CategoryId = 31,
+                            Id = 2044
+                        },
+                        new
+                        {
+                            ProductId = 765,
+                            CategoryId = 33,
+                            Id = 2045
+                        },
+                        new
+                        {
+                            ProductId = 216,
+                            CategoryId = 45,
+                            Id = 2047
+                        },
+                        new
+                        {
+                            ProductId = 767,
+                            CategoryId = 16,
+                            Id = 2048
+                        },
+                        new
+                        {
+                            ProductId = 749,
+                            CategoryId = 40,
+                            Id = 2049
+                        },
+                        new
+                        {
+                            ProductId = 668,
+                            CategoryId = 33,
+                            Id = 2050
+                        },
+                        new
+                        {
+                            ProductId = 784,
+                            CategoryId = 9,
+                            Id = 2051
+                        });
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.ProductPicture", b =>
@@ -374,7 +2593,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte[]>("TimeStamp")
                         .IsConcurrencyToken()
@@ -383,51 +2602,1201 @@ namespace Sample.Products.Backend.Api.Migrations
 
                     b.HasKey("PictureId", "ProductId");
 
-                    b.HasIndex("Id");
-
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductPictures");
+
+                    b.HasData(
+                        new
+                        {
+                            PictureId = 1002,
+                            ProductId = 332,
+                            Id = 1062
+                        },
+                        new
+                        {
+                            PictureId = 1002,
+                            ProductId = 427,
+                            Id = 1091
+                        },
+                        new
+                        {
+                            PictureId = 1006,
+                            ProductId = 219,
+                            Id = 1066
+                        },
+                        new
+                        {
+                            PictureId = 1006,
+                            ProductId = 295,
+                            Id = 1047
+                        },
+                        new
+                        {
+                            PictureId = 1006,
+                            ProductId = 627,
+                            Id = 1076
+                        },
+                        new
+                        {
+                            PictureId = 1008,
+                            ProductId = 627,
+                            Id = 1098
+                        },
+                        new
+                        {
+                            PictureId = 1010,
+                            ProductId = 764,
+                            Id = 1036
+                        },
+                        new
+                        {
+                            PictureId = 1011,
+                            ProductId = 209,
+                            Id = 1005
+                        },
+                        new
+                        {
+                            PictureId = 1012,
+                            ProductId = 659,
+                            Id = 1028
+                        },
+                        new
+                        {
+                            PictureId = 1013,
+                            ProductId = 216,
+                            Id = 1044
+                        },
+                        new
+                        {
+                            PictureId = 1013,
+                            ProductId = 427,
+                            Id = 1081
+                        },
+                        new
+                        {
+                            PictureId = 1014,
+                            ProductId = 767,
+                            Id = 1061
+                        },
+                        new
+                        {
+                            PictureId = 1015,
+                            ProductId = 212,
+                            Id = 1065
+                        },
+                        new
+                        {
+                            PictureId = 1016,
+                            ProductId = 296,
+                            Id = 1075
+                        },
+                        new
+                        {
+                            PictureId = 1016,
+                            ProductId = 763,
+                            Id = 1038
+                        },
+                        new
+                        {
+                            PictureId = 1018,
+                            ProductId = 772,
+                            Id = 1046
+                        },
+                        new
+                        {
+                            PictureId = 1020,
+                            ProductId = 206,
+                            Id = 1080
+                        },
+                        new
+                        {
+                            PictureId = 1021,
+                            ProductId = 296,
+                            Id = 1090
+                        },
+                        new
+                        {
+                            PictureId = 1023,
+                            ProductId = 303,
+                            Id = 1073
+                        },
+                        new
+                        {
+                            PictureId = 1023,
+                            ProductId = 337,
+                            Id = 1097
+                        },
+                        new
+                        {
+                            PictureId = 1023,
+                            ProductId = 703,
+                            Id = 1016
+                        },
+                        new
+                        {
+                            PictureId = 1028,
+                            ProductId = 427,
+                            Id = 1003
+                        },
+                        new
+                        {
+                            PictureId = 1028,
+                            ProductId = 638,
+                            Id = 1001
+                        },
+                        new
+                        {
+                            PictureId = 1028,
+                            ProductId = 659,
+                            Id = 1000
+                        },
+                        new
+                        {
+                            PictureId = 1028,
+                            ProductId = 662,
+                            Id = 1082
+                        },
+                        new
+                        {
+                            PictureId = 1029,
+                            ProductId = 322,
+                            Id = 1083
+                        },
+                        new
+                        {
+                            PictureId = 1030,
+                            ProductId = 614,
+                            Id = 1017
+                        },
+                        new
+                        {
+                            PictureId = 1030,
+                            ProductId = 765,
+                            Id = 1085
+                        },
+                        new
+                        {
+                            PictureId = 1031,
+                            ProductId = 724,
+                            Id = 1067
+                        },
+                        new
+                        {
+                            PictureId = 1031,
+                            ProductId = 782,
+                            Id = 1051
+                        },
+                        new
+                        {
+                            PictureId = 1032,
+                            ProductId = 212,
+                            Id = 1060
+                        },
+                        new
+                        {
+                            PictureId = 1032,
+                            ProductId = 337,
+                            Id = 1048
+                        },
+                        new
+                        {
+                            PictureId = 1032,
+                            ProductId = 766,
+                            Id = 1021
+                        },
+                        new
+                        {
+                            PictureId = 1034,
+                            ProductId = 627,
+                            Id = 1026
+                        },
+                        new
+                        {
+                            PictureId = 1034,
+                            ProductId = 767,
+                            Id = 1035
+                        },
+                        new
+                        {
+                            PictureId = 1036,
+                            ProductId = 322,
+                            Id = 1077
+                        },
+                        new
+                        {
+                            PictureId = 1036,
+                            ProductId = 763,
+                            Id = 1019
+                        },
+                        new
+                        {
+                            PictureId = 1037,
+                            ProductId = 216,
+                            Id = 1087
+                        },
+                        new
+                        {
+                            PictureId = 1037,
+                            ProductId = 782,
+                            Id = 999
+                        },
+                        new
+                        {
+                            PictureId = 1038,
+                            ProductId = 427,
+                            Id = 1023
+                        },
+                        new
+                        {
+                            PictureId = 1038,
+                            ProductId = 662,
+                            Id = 1072
+                        },
+                        new
+                        {
+                            PictureId = 1038,
+                            ProductId = 763,
+                            Id = 1095
+                        },
+                        new
+                        {
+                            PictureId = 1038,
+                            ProductId = 766,
+                            Id = 1056
+                        },
+                        new
+                        {
+                            PictureId = 1039,
+                            ProductId = 659,
+                            Id = 1078
+                        },
+                        new
+                        {
+                            PictureId = 1039,
+                            ProductId = 784,
+                            Id = 1074
+                        },
+                        new
+                        {
+                            PictureId = 1040,
+                            ProductId = 427,
+                            Id = 1058
+                        },
+                        new
+                        {
+                            PictureId = 1040,
+                            ProductId = 703,
+                            Id = 1057
+                        },
+                        new
+                        {
+                            PictureId = 1041,
+                            ProductId = 772,
+                            Id = 1004
+                        },
+                        new
+                        {
+                            PictureId = 1043,
+                            ProductId = 216,
+                            Id = 1043
+                        },
+                        new
+                        {
+                            PictureId = 1043,
+                            ProductId = 384,
+                            Id = 1010
+                        },
+                        new
+                        {
+                            PictureId = 1044,
+                            ProductId = 384,
+                            Id = 1006
+                        },
+                        new
+                        {
+                            PictureId = 1044,
+                            ProductId = 724,
+                            Id = 1027
+                        },
+                        new
+                        {
+                            PictureId = 1044,
+                            ProductId = 772,
+                            Id = 1041
+                        },
+                        new
+                        {
+                            PictureId = 1045,
+                            ProductId = 765,
+                            Id = 1015
+                        },
+                        new
+                        {
+                            PictureId = 1047,
+                            ProductId = 206,
+                            Id = 1029
+                        },
+                        new
+                        {
+                            PictureId = 1047,
+                            ProductId = 766,
+                            Id = 1034
+                        },
+                        new
+                        {
+                            PictureId = 1048,
+                            ProductId = 216,
+                            Id = 1069
+                        },
+                        new
+                        {
+                            PictureId = 1049,
+                            ProductId = 724,
+                            Id = 1093
+                        },
+                        new
+                        {
+                            PictureId = 1052,
+                            ProductId = 662,
+                            Id = 1008
+                        },
+                        new
+                        {
+                            PictureId = 1053,
+                            ProductId = 332,
+                            Id = 1094
+                        },
+                        new
+                        {
+                            PictureId = 1054,
+                            ProductId = 262,
+                            Id = 1049
+                        },
+                        new
+                        {
+                            PictureId = 1055,
+                            ProductId = 624,
+                            Id = 1002
+                        },
+                        new
+                        {
+                            PictureId = 1057,
+                            ProductId = 262,
+                            Id = 1071
+                        },
+                        new
+                        {
+                            PictureId = 1060,
+                            ProductId = 784,
+                            Id = 1022
+                        },
+                        new
+                        {
+                            PictureId = 1062,
+                            ProductId = 765,
+                            Id = 1096
+                        },
+                        new
+                        {
+                            PictureId = 1063,
+                            ProductId = 659,
+                            Id = 1064
+                        },
+                        new
+                        {
+                            PictureId = 1065,
+                            ProductId = 638,
+                            Id = 1007
+                        },
+                        new
+                        {
+                            PictureId = 1065,
+                            ProductId = 749,
+                            Id = 1092
+                        },
+                        new
+                        {
+                            PictureId = 1066,
+                            ProductId = 387,
+                            Id = 1052
+                        },
+                        new
+                        {
+                            PictureId = 1067,
+                            ProductId = 749,
+                            Id = 1013
+                        },
+                        new
+                        {
+                            PictureId = 1068,
+                            ProductId = 659,
+                            Id = 1042
+                        },
+                        new
+                        {
+                            PictureId = 1068,
+                            ProductId = 765,
+                            Id = 1045
+                        },
+                        new
+                        {
+                            PictureId = 1070,
+                            ProductId = 332,
+                            Id = 1025
+                        },
+                        new
+                        {
+                            PictureId = 1070,
+                            ProductId = 763,
+                            Id = 1020
+                        },
+                        new
+                        {
+                            PictureId = 1071,
+                            ProductId = 332,
+                            Id = 1088
+                        },
+                        new
+                        {
+                            PictureId = 1072,
+                            ProductId = 262,
+                            Id = 1079
+                        },
+                        new
+                        {
+                            PictureId = 1073,
+                            ProductId = 731,
+                            Id = 1053
+                        },
+                        new
+                        {
+                            PictureId = 1074,
+                            ProductId = 627,
+                            Id = 1011
+                        },
+                        new
+                        {
+                            PictureId = 1076,
+                            ProductId = 767,
+                            Id = 1033
+                        },
+                        new
+                        {
+                            PictureId = 1078,
+                            ProductId = 782,
+                            Id = 1059
+                        },
+                        new
+                        {
+                            PictureId = 1079,
+                            ProductId = 322,
+                            Id = 1031
+                        },
+                        new
+                        {
+                            PictureId = 1079,
+                            ProductId = 337,
+                            Id = 1070
+                        },
+                        new
+                        {
+                            PictureId = 1079,
+                            ProductId = 731,
+                            Id = 1014
+                        },
+                        new
+                        {
+                            PictureId = 1082,
+                            ProductId = 749,
+                            Id = 1009
+                        },
+                        new
+                        {
+                            PictureId = 1083,
+                            ProductId = 638,
+                            Id = 1037
+                        },
+                        new
+                        {
+                            PictureId = 1084,
+                            ProductId = 668,
+                            Id = 1012
+                        },
+                        new
+                        {
+                            PictureId = 1084,
+                            ProductId = 749,
+                            Id = 1050
+                        },
+                        new
+                        {
+                            PictureId = 1088,
+                            ProductId = 359,
+                            Id = 1024
+                        },
+                        new
+                        {
+                            PictureId = 1088,
+                            ProductId = 766,
+                            Id = 1063
+                        },
+                        new
+                        {
+                            PictureId = 1089,
+                            ProductId = 216,
+                            Id = 1089
+                        },
+                        new
+                        {
+                            PictureId = 1089,
+                            ProductId = 668,
+                            Id = 1030
+                        },
+                        new
+                        {
+                            PictureId = 1089,
+                            ProductId = 764,
+                            Id = 1039
+                        },
+                        new
+                        {
+                            PictureId = 1090,
+                            ProductId = 624,
+                            Id = 1040
+                        },
+                        new
+                        {
+                            PictureId = 1090,
+                            ProductId = 764,
+                            Id = 1084
+                        });
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.ProductTag", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("TagId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte[]>("TimeStamp")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("Id");
+                    b.HasKey("TagId", "ProductId");
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("TagId");
-
                     b.ToTable("ProductTags");
+
+                    b.HasData(
+                        new
+                        {
+                            TagId = 40,
+                            ProductId = 784,
+                            Id = 1001
+                        },
+                        new
+                        {
+                            TagId = 77,
+                            ProductId = 668,
+                            Id = 1002
+                        },
+                        new
+                        {
+                            TagId = 24,
+                            ProductId = 295,
+                            Id = 1003
+                        },
+                        new
+                        {
+                            TagId = 68,
+                            ProductId = 209,
+                            Id = 1004
+                        },
+                        new
+                        {
+                            TagId = 74,
+                            ProductId = 614,
+                            Id = 1005
+                        },
+                        new
+                        {
+                            TagId = 56,
+                            ProductId = 724,
+                            Id = 1006
+                        },
+                        new
+                        {
+                            TagId = 25,
+                            ProductId = 624,
+                            Id = 1007
+                        },
+                        new
+                        {
+                            TagId = 5,
+                            ProductId = 296,
+                            Id = 1008
+                        },
+                        new
+                        {
+                            TagId = 87,
+                            ProductId = 303,
+                            Id = 1009
+                        },
+                        new
+                        {
+                            TagId = 72,
+                            ProductId = 766,
+                            Id = 1010
+                        },
+                        new
+                        {
+                            TagId = 44,
+                            ProductId = 782,
+                            Id = 1011
+                        },
+                        new
+                        {
+                            TagId = 20,
+                            ProductId = 322,
+                            Id = 1012
+                        },
+                        new
+                        {
+                            TagId = 31,
+                            ProductId = 262,
+                            Id = 1013
+                        },
+                        new
+                        {
+                            TagId = 47,
+                            ProductId = 638,
+                            Id = 1014
+                        },
+                        new
+                        {
+                            TagId = 61,
+                            ProductId = 782,
+                            Id = 1015
+                        },
+                        new
+                        {
+                            TagId = 10,
+                            ProductId = 765,
+                            Id = 1016
+                        },
+                        new
+                        {
+                            TagId = 19,
+                            ProductId = 659,
+                            Id = 1017
+                        },
+                        new
+                        {
+                            TagId = 62,
+                            ProductId = 762,
+                            Id = 1018
+                        },
+                        new
+                        {
+                            TagId = 90,
+                            ProductId = 662,
+                            Id = 1019
+                        },
+                        new
+                        {
+                            TagId = 26,
+                            ProductId = 662,
+                            Id = 1020
+                        },
+                        new
+                        {
+                            TagId = 12,
+                            ProductId = 359,
+                            Id = 1021
+                        },
+                        new
+                        {
+                            TagId = 35,
+                            ProductId = 384,
+                            Id = 1022
+                        },
+                        new
+                        {
+                            TagId = 72,
+                            ProductId = 295,
+                            Id = 1023
+                        },
+                        new
+                        {
+                            TagId = 90,
+                            ProductId = 763,
+                            Id = 1024
+                        },
+                        new
+                        {
+                            TagId = 71,
+                            ProductId = 749,
+                            Id = 1025
+                        },
+                        new
+                        {
+                            TagId = 67,
+                            ProductId = 749,
+                            Id = 1026
+                        },
+                        new
+                        {
+                            TagId = 39,
+                            ProductId = 762,
+                            Id = 1027
+                        },
+                        new
+                        {
+                            TagId = 65,
+                            ProductId = 724,
+                            Id = 1028
+                        },
+                        new
+                        {
+                            TagId = 66,
+                            ProductId = 659,
+                            Id = 1029
+                        },
+                        new
+                        {
+                            TagId = 91,
+                            ProductId = 749,
+                            Id = 1030
+                        },
+                        new
+                        {
+                            TagId = 24,
+                            ProductId = 765,
+                            Id = 1031
+                        },
+                        new
+                        {
+                            TagId = 71,
+                            ProductId = 784,
+                            Id = 1032
+                        },
+                        new
+                        {
+                            TagId = 23,
+                            ProductId = 295,
+                            Id = 1033
+                        },
+                        new
+                        {
+                            TagId = 50,
+                            ProductId = 764,
+                            Id = 1034
+                        },
+                        new
+                        {
+                            TagId = 83,
+                            ProductId = 763,
+                            Id = 1035
+                        },
+                        new
+                        {
+                            TagId = 85,
+                            ProductId = 731,
+                            Id = 1036
+                        },
+                        new
+                        {
+                            TagId = 75,
+                            ProductId = 763,
+                            Id = 1037
+                        },
+                        new
+                        {
+                            TagId = 60,
+                            ProductId = 427,
+                            Id = 1038
+                        },
+                        new
+                        {
+                            TagId = 33,
+                            ProductId = 384,
+                            Id = 1039
+                        },
+                        new
+                        {
+                            TagId = 81,
+                            ProductId = 703,
+                            Id = 1041
+                        },
+                        new
+                        {
+                            TagId = 15,
+                            ProductId = 624,
+                            Id = 1042
+                        },
+                        new
+                        {
+                            TagId = 62,
+                            ProductId = 766,
+                            Id = 1043
+                        },
+                        new
+                        {
+                            TagId = 50,
+                            ProductId = 296,
+                            Id = 1044
+                        },
+                        new
+                        {
+                            TagId = 69,
+                            ProductId = 662,
+                            Id = 1045
+                        },
+                        new
+                        {
+                            TagId = 7,
+                            ProductId = 624,
+                            Id = 1046
+                        },
+                        new
+                        {
+                            TagId = 40,
+                            ProductId = 359,
+                            Id = 1047
+                        },
+                        new
+                        {
+                            TagId = 54,
+                            ProductId = 206,
+                            Id = 1048
+                        },
+                        new
+                        {
+                            TagId = 84,
+                            ProductId = 763,
+                            Id = 1049
+                        },
+                        new
+                        {
+                            TagId = 77,
+                            ProductId = 216,
+                            Id = 1050
+                        },
+                        new
+                        {
+                            TagId = 82,
+                            ProductId = 209,
+                            Id = 1051
+                        },
+                        new
+                        {
+                            TagId = 85,
+                            ProductId = 332,
+                            Id = 1052
+                        },
+                        new
+                        {
+                            TagId = 48,
+                            ProductId = 638,
+                            Id = 1053
+                        },
+                        new
+                        {
+                            TagId = 29,
+                            ProductId = 332,
+                            Id = 1054
+                        },
+                        new
+                        {
+                            TagId = 52,
+                            ProductId = 638,
+                            Id = 1055
+                        },
+                        new
+                        {
+                            TagId = 30,
+                            ProductId = 427,
+                            Id = 1056
+                        },
+                        new
+                        {
+                            TagId = 94,
+                            ProductId = 387,
+                            Id = 1057
+                        },
+                        new
+                        {
+                            TagId = 80,
+                            ProductId = 219,
+                            Id = 1058
+                        },
+                        new
+                        {
+                            TagId = 73,
+                            ProductId = 384,
+                            Id = 1059
+                        },
+                        new
+                        {
+                            TagId = 9,
+                            ProductId = 322,
+                            Id = 1060
+                        },
+                        new
+                        {
+                            TagId = 23,
+                            ProductId = 784,
+                            Id = 1061
+                        },
+                        new
+                        {
+                            TagId = 13,
+                            ProductId = 262,
+                            Id = 1062
+                        },
+                        new
+                        {
+                            TagId = 9,
+                            ProductId = 782,
+                            Id = 1063
+                        },
+                        new
+                        {
+                            TagId = 23,
+                            ProductId = 206,
+                            Id = 1064
+                        },
+                        new
+                        {
+                            TagId = 79,
+                            ProductId = 766,
+                            Id = 1065
+                        },
+                        new
+                        {
+                            TagId = 84,
+                            ProductId = 766,
+                            Id = 1066
+                        },
+                        new
+                        {
+                            TagId = 32,
+                            ProductId = 296,
+                            Id = 1067
+                        },
+                        new
+                        {
+                            TagId = 15,
+                            ProductId = 337,
+                            Id = 1068
+                        },
+                        new
+                        {
+                            TagId = 27,
+                            ProductId = 767,
+                            Id = 1069
+                        },
+                        new
+                        {
+                            TagId = 17,
+                            ProductId = 638,
+                            Id = 1070
+                        },
+                        new
+                        {
+                            TagId = 22,
+                            ProductId = 384,
+                            Id = 1071
+                        },
+                        new
+                        {
+                            TagId = 14,
+                            ProductId = 209,
+                            Id = 1072
+                        },
+                        new
+                        {
+                            TagId = 87,
+                            ProductId = 782,
+                            Id = 1073
+                        },
+                        new
+                        {
+                            TagId = 32,
+                            ProductId = 724,
+                            Id = 1074
+                        },
+                        new
+                        {
+                            TagId = 44,
+                            ProductId = 767,
+                            Id = 1075
+                        },
+                        new
+                        {
+                            TagId = 49,
+                            ProductId = 219,
+                            Id = 1076
+                        },
+                        new
+                        {
+                            TagId = 45,
+                            ProductId = 262,
+                            Id = 1077
+                        },
+                        new
+                        {
+                            TagId = 69,
+                            ProductId = 668,
+                            Id = 1078
+                        },
+                        new
+                        {
+                            TagId = 89,
+                            ProductId = 784,
+                            Id = 1079
+                        },
+                        new
+                        {
+                            TagId = 76,
+                            ProductId = 262,
+                            Id = 1080
+                        },
+                        new
+                        {
+                            TagId = 93,
+                            ProductId = 659,
+                            Id = 1081
+                        },
+                        new
+                        {
+                            TagId = 19,
+                            ProductId = 662,
+                            Id = 1082
+                        },
+                        new
+                        {
+                            TagId = 85,
+                            ProductId = 337,
+                            Id = 1083
+                        },
+                        new
+                        {
+                            TagId = 18,
+                            ProductId = 219,
+                            Id = 1084
+                        },
+                        new
+                        {
+                            TagId = 2,
+                            ProductId = 303,
+                            Id = 1085
+                        },
+                        new
+                        {
+                            TagId = 94,
+                            ProductId = 766,
+                            Id = 1086
+                        },
+                        new
+                        {
+                            TagId = 55,
+                            ProductId = 638,
+                            Id = 1087
+                        },
+                        new
+                        {
+                            TagId = 65,
+                            ProductId = 731,
+                            Id = 1088
+                        },
+                        new
+                        {
+                            TagId = 10,
+                            ProductId = 303,
+                            Id = 1089
+                        },
+                        new
+                        {
+                            TagId = 33,
+                            ProductId = 767,
+                            Id = 1090
+                        },
+                        new
+                        {
+                            TagId = 59,
+                            ProductId = 296,
+                            Id = 1091
+                        },
+                        new
+                        {
+                            TagId = 75,
+                            ProductId = 724,
+                            Id = 1092
+                        },
+                        new
+                        {
+                            TagId = 58,
+                            ProductId = 764,
+                            Id = 1093
+                        },
+                        new
+                        {
+                            TagId = 8,
+                            ProductId = 764,
+                            Id = 1094
+                        },
+                        new
+                        {
+                            TagId = 15,
+                            ProductId = 627,
+                            Id = 1095
+                        },
+                        new
+                        {
+                            TagId = 63,
+                            ProductId = 384,
+                            Id = 1096
+                        },
+                        new
+                        {
+                            TagId = 69,
+                            ProductId = 703,
+                            Id = 1097
+                        },
+                        new
+                        {
+                            TagId = 95,
+                            ProductId = 384,
+                            Id = 1098
+                        },
+                        new
+                        {
+                            TagId = 75,
+                            ProductId = 387,
+                            Id = 1099
+                        },
+                        new
+                        {
+                            TagId = 20,
+                            ProductId = 624,
+                            Id = 1100
+                        });
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.RegisteredRole", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -435,20 +3804,18 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
-
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
+                        .HasName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("RegisteredRoles");
@@ -459,7 +3826,7 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -471,9 +3838,509 @@ namespace Sample.Products.Backend.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id");
-
                     b.ToTable("Tags");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "mollit anim id est l"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in cul"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "enim ad minim veniam, quis nostrud exercit"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat "
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco "
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "ullamco laboris nisi ut aliquip ex ea c"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "qui officia deserunt mollit anim id est laborum.Lorem ipsum dol"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "adipiscing elit, sed do eiusmod tempor incididunt ut l"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "est laborum.Lorem ipsum dolor sit amet, consectetur adi"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "in voluptate velit esse cillum dolore eu fugiat nul"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "laboris nisi ut aliquip ex ea commodo"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "laborum.Lorem ipsum dolor sit amet, consectet"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "ut labore et dolore magna aliqua. Ut enim ad minim v"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "tempor incididunt ut labore "
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut al"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "tempor incididunt u"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Name = "magna aliqua. Ut"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Name = "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in rep"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Name = "in voluptate velit esse cillum do"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Name = "ex ea commodo consequat. Duis aute irure dolor in reprehende"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Name = "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis au"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Name = "m.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Name = "veniam, quis nos"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Name = "incididunt ut labore et dolore magn"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Name = "id est lab"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Name = "sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore e"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Name = "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Name = "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate ve"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Name = "adipiscing elit, sed do eiusmod tempor incididunt ut labore "
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Name = "qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Name = "nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in "
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Name = "anim id est laborum.Lorem i"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Name = "elit, sed d"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Name = "tempor incidi"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Name = "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia "
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Name = "cupidatat non proid"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Name = "in voluptate velit esse cillum dolor"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Name = "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation "
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Name = "occaecat cupidatat non proident, sunt in culpa"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Name = "nostrud exercitation ullamco laboris nisi ut aliquip ex ea c"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Name = "Excepteur sint occaecat cupidatat non proident, sunt in cul"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Name = "enim ad minim veniam, quis nostrud exerci"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Name = "ut lab"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Name = "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehende"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Name = "eiusmod tempor incididunt ut labore et dolore magna "
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Name = "laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inci"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Name = "in culpa qui officia "
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Name = "consectetur adipiscing elit, sed"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Name = "sint occaecat cupidatat non proident, sunt "
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Name = "aute irure dolor in reprehenderit in"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Name = "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehend"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Name = "sunt in culpa qui officia d"
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Name = "adipiscing elit, sed do eiusmod tempor in"
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Name = "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen"
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Name = "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est "
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Name = "adipiscing elit, sed do eiusmod tempor "
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Name = "eu fugiat nulla pariatur. Excepteur sint occaec"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Name = "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mo"
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Name = "quis nostrud exercitation ullamco "
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Name = "cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est la"
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Name = "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ull"
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Name = "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in"
+                        },
+                        new
+                        {
+                            Id = 65,
+                            Name = "sunt in culpa qui officia deserunt mollit anim id"
+                        },
+                        new
+                        {
+                            Id = 66,
+                            Name = "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ex"
+                        },
+                        new
+                        {
+                            Id = 67,
+                            Name = "elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut "
+                        },
+                        new
+                        {
+                            Id = 68,
+                            Name = "velit esse "
+                        },
+                        new
+                        {
+                            Id = 69,
+                            Name = "aliq"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Name = "et dolore magna aliqua. U"
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Name = "in voluptate velit esse cillum do"
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Name = "nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptat"
+                        },
+                        new
+                        {
+                            Id = 73,
+                            Name = "ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehen"
+                        },
+                        new
+                        {
+                            Id = 74,
+                            Name = "occaecat cupidatat non proident, sunt in culpa qui officia deser"
+                        },
+                        new
+                        {
+                            Id = 75,
+                            Name = "qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor"
+                        },
+                        new
+                        {
+                            Id = 76,
+                            Name = "dolor sit amet, co"
+                        },
+                        new
+                        {
+                            Id = 77,
+                            Name = "labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio"
+                        },
+                        new
+                        {
+                            Id = 78,
+                            Name = "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cill"
+                        },
+                        new
+                        {
+                            Id = 79,
+                            Name = "aute irure dolor in"
+                        },
+                        new
+                        {
+                            Id = 80,
+                            Name = "ex ea commodo consequat. Duis aute irure dolor in reprehend"
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Name = "orum.Lo"
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Name = "dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui o"
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Name = "proident, sunt in culpa qui officia deserunt mollit anim id est la"
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Name = "quis nostrud exercitation ullamco laboris nisi u"
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Name = "aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu"
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Name = "magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla"
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Name = "ut labore et dolore magna "
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Name = "eiusmod tempor incididunt ut "
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Name = "proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum d"
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Name = "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mol"
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Name = "anim id est laborum.Lorem ipsum dolor sit amet, consectetur adi"
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Name = "eu fugiat nulla pariatur. Excepteur sint occaec"
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Name = "qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adi"
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Name = "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Exce"
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Name = "ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in r"
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Name = "sit am"
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Name = "sit amet, consectetur a"
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Name = "aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu "
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Name = "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidata"
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Name = "amet, consectetur adipiscing "
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -532,8 +4399,6 @@ namespace Sample.Products.Backend.Api.Migrations
                     b.HasOne("Sample.Products.Backend.Entities.Concrete.Tables.Picture", "Picture")
                         .WithOne("Brand")
                         .HasForeignKey("Sample.Products.Backend.Entities.Concrete.Tables.Brand", "PictureId");
-
-                    b.Navigation("Picture");
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Category", b =>
@@ -544,13 +4409,7 @@ namespace Sample.Products.Backend.Api.Migrations
 
                     b.HasOne("Sample.Products.Backend.Entities.Concrete.Tables.Picture", "Picture")
                         .WithOne("Category")
-                        .HasForeignKey("Sample.Products.Backend.Entities.Concrete.Tables.Category", "PictureId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ParentCategory");
-
-                    b.Navigation("Picture");
+                        .HasForeignKey("Sample.Products.Backend.Entities.Concrete.Tables.Category", "PictureId");
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Product", b =>
@@ -560,8 +4419,6 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasForeignKey("Sample.Products.Backend.Entities.Concrete.Tables.Product", "BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Brand");
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.ProductCategory", b =>
@@ -577,10 +4434,6 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.ProductPicture", b =>
@@ -596,18 +4449,10 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Picture");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.ProductTag", b =>
                 {
-                    b.HasOne("Sample.Products.Backend.Entities.Concrete.Tables.Category", null)
-                        .WithMany("ProductTags")
-                        .HasForeignKey("CategoryId");
-
                     b.HasOne("Sample.Products.Backend.Entities.Concrete.Tables.Product", "Product")
                         .WithMany("ProductTags")
                         .HasForeignKey("ProductId")
@@ -619,47 +4464,6 @@ namespace Sample.Products.Backend.Api.Migrations
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Tag");
-                });
-
-            modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Brand", b =>
-                {
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Category", b =>
-                {
-                    b.Navigation("ProductCategories");
-
-                    b.Navigation("ProductTags");
-
-                    b.Navigation("SubCategories");
-                });
-
-            modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Picture", b =>
-                {
-                    b.Navigation("Brand");
-
-                    b.Navigation("Category");
-
-                    b.Navigation("ProductPictures");
-                });
-
-            modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Product", b =>
-                {
-                    b.Navigation("ProductCategories");
-
-                    b.Navigation("ProductPictures");
-
-                    b.Navigation("ProductTags");
-                });
-
-            modelBuilder.Entity("Sample.Products.Backend.Entities.Concrete.Tables.Tag", b =>
-                {
-                    b.Navigation("ProductTags");
                 });
 #pragma warning restore 612, 618
         }

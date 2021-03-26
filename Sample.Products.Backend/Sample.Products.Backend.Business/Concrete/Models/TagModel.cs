@@ -1,7 +1,8 @@
-namespace Sample.Products.Backend.Business.Concrete.Models
+namespace Sample.Products.Backend.Api.Models
 {
     public class TagModel
     {
-        
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

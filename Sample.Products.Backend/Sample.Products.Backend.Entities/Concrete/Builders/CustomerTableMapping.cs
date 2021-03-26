@@ -9,9 +9,6 @@ namespace Sample.Products.Backend.Entities.Concrete.Builders
         public void Configure(EntityTypeBuilder<Customer> builder)
         {
             builder.ToTable("Customers");
-            builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.HasKey(x => x.Id);
-            builder.HasIndex(x => x.Id);
         }
     }
 }

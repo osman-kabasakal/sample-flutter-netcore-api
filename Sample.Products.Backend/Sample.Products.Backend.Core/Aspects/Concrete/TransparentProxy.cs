@@ -51,8 +51,13 @@ namespace Sample.Products.Backend.Core.Aspects.Concrete
                 //MethodInfo da tanımlı getcustomattribute fonksiyonu çalışmıyor.
                 //bu yüzden decorate den alıyoruz attribute listesini
                 //MethodInfo da 
-                var aspects = _decorate.GetType().GetMethod(targetMethod.Name)!.GetCustomAttributes().ToArray();
-
+                
+                var methodAspects = _decorate.GetType().GetMethod(targetMethod.Name)!.GetCustomAttributes().ToArray();
+                var typeAttributes=_decorate.GetType().GetCustomAttributes()?.Where(x => x is ITypeAspectForMethods).ToArray();
+                Attribute[] aspects = new Attribute[methodAspects.Length + (typeAttributes?.Length ?? 0)];
+                methodAspects.CopyTo(aspects,0);
+                typeAttributes.CopyTo(aspects,methodAspects.Length);
+                
                 //Method bilgileri Aspecte aktarılıyor.
                 FillAspectContext(targetMethod, args);
 

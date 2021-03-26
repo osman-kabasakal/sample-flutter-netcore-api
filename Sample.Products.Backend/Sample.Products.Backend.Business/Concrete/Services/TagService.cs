@@ -33,7 +33,8 @@ namespace Sample.Products.Backend.Business.Concrete.Services
         public ServiceResponse<Tag> GetTagById(int id)
         {
             var rt = new ServiceResponse<Tag>();
-            var tag = Repository.Single(x => x.Id == id) ??
+            var tag = Repository.Single(x => x.Id == id
+                      ) ??
                       throw new ArgumentNullException("Repository.Single(x => x.Id == id)");
             rt.IsSuccessful = true;
             rt.Entity = tag;
@@ -58,8 +59,8 @@ namespace Sample.Products.Backend.Business.Concrete.Services
             var rt = new ServiceResponse<IPaginate<Tag>>
             {
                 IsSuccessful = true,
-                Entity = Repository.GetList(x => x.Products.Any(pt => pt.Id == productId), index: page, size: pageIndex,
-                    include: x => x.Include(pt => pt.ProductTags).Include(pt => pt.Products))
+                Entity = Repository.GetList(x => x.ProductTags.Any(pt => pt.ProductId == productId), index: page, size: pageIndex,
+                    include: x => x.Include(pt => pt.ProductTags).ThenInclude(pt => pt.Product))
             };
             rt.Count = rt.Entity.Count;
             return rt;
@@ -68,14 +69,14 @@ namespace Sample.Products.Backend.Business.Concrete.Services
         [CatchError]
         public ServiceResponse<IPaginate<int>> GetProductsIdsByTagId(int tagId)
         {
-            var tag = Repository.Single(x => x.Id == tagId, include: x => x.Include(pt => pt.Products)) ??
+            var tag = Repository.Single(x => x.Id == tagId, include: x => x.Include(pt => pt.ProductTags).ThenInclude(pt => pt.Product)) ??
                       throw new ArgumentNullException(
                           "Repository.Single(x => x.Id == tagId, include: x => x.Include(pt => pt.Products))");
 
             var rt = new ServiceResponse<IPaginate<int>>
             {
                 IsSuccessful = true,
-                Entity = tag.Products.ToPaginate(converter: x => x.Select(p => p.Id), 0, int.MaxValue)
+                Entity = tag.ProductTags.Select(x=>x.Tag).ToPaginate(converter: x => x.Select(p => p.Id), 0, int.MaxValue)
             };
             return rt;
         }

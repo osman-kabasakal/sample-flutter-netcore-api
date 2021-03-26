@@ -12,8 +12,8 @@ namespace Sample.Products.Backend.Entities.Concrete.Builders
             builder.Property(x => x.TimeStamp).IsRowVersion();
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.HasKey(x => x.Id);
-            builder.HasIndex(x => x.Id);
             UpConfigure(builder);
+            builder.HasData(SeedData.Seder.GetSeedData<TEntity>());
         }
         
         public abstract void UpConfigure(EntityTypeBuilder<TEntity> builder);
