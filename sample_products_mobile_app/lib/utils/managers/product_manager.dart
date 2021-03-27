@@ -23,12 +23,15 @@ class ProductManager {
   Future<Paginate<Product>?> getProducts(
       {int? categoryId, int page = 0, int size = 20}) async {
     var query = categoryId != null
-        ? "categoryId=$categoryId/pageIndex=$page/pageSize=$size"
-        : "pageIndex=$page/pageSize=$size";
+        ? "categoryId=$categoryId&pageIndex=$page&pageSize=$size"
+        : "pageIndex=$page&pageSize=$size";
     var uri = Uri.parse("${appConfig?.baseApiUrl}/product/get?$query");
     var token = await userService.getToken();
-    var response =
-        await http.get(uri, headers: {"Authorization": "Bearer $token"});
+    var response = await http.get(uri, headers: {
+      // HttpHeaders.contentTypeHeader: "application/json",
+      HttpHeaders.authorizationHeader: "Bearer $token",
+      HttpHeaders.acceptCharsetHeader: "UTF-8"
+    });
     if (response.statusCode != HttpStatus.ok) return null;
     final productResponse = ApiResponse<Paginate<Product>>.fromJson(
         jsonDecode(response.body),

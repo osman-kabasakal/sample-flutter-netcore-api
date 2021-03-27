@@ -14,6 +14,7 @@ class Paginate<T> {
 
   late int pages;
 
+  @JsonKey(name: "items")
   late List<T> items;
 
   late bool hasPrevious;
@@ -32,8 +33,8 @@ class Paginate<T> {
   });
 
   factory Paginate.fromJson(
-          Map<String, dynamic> json, T Function(Object) genericFactory) =>
+          Map<String, dynamic> json, T Function(Object?) genericFactory) =>
       _$PaginateFromJson(json, genericFactory);
-  Map<String, dynamic> toJson(T Function(Object) genericFactory) =>
+  Map<String, dynamic> toJson(T Function(Object?) genericFactory) =>
       _$PaginateToJson(this, genericFactory);
 }

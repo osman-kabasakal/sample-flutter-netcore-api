@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sample_products_mobile_app/constants/db_insert_confilict_action.dart';
 import 'package:sample_products_mobile_app/core/bloc/bloc_provider.dart';
+import 'package:sample_products_mobile_app/core/bloc/reactive_bloc.dart';
 import 'package:sample_products_mobile_app/core/domain/context/context.dart';
 import 'package:sample_products_mobile_app/core/domain/entities/entity_instances.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sqflite/sqflite.dart';
-
+import 'package:sample_products_mobile_app/utils/helpers/di_helpers.dart';
 import 'base_entity.dart';
 import 'base_repository.dart';
 
@@ -33,8 +34,9 @@ class Repository<T extends IEntity> implements IBaseRepository<T?> {
     required this.primaryFieldName,
     // @required this.db
   }) {
-    reactiveDb = (BlocProvider.of<DatabaseContext>(context)?.subject
-        as BehaviorSubject<Database>?);
+    reactiveDb = ((context.getRequireReactiveValue<Database>()
+            as ReactiveBehaviorSubjectBloc<Database>?)
+        ?.subject) as BehaviorSubject<Database>?;
   }
 
   @override

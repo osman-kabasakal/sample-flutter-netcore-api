@@ -11,7 +11,7 @@ class Product {
   late String? shortDescription;
   late String? description;
   late int? quantity;
-  late int? price;
+  late double? price;
   late int? brandId;
 
   late Brand? brand;

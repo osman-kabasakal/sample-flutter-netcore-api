@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 typedef Widget DiChild(BuildContext context);
-typedef T DiDepends<T>(BuildContext context);
+typedef Provider<T> DiDepends<T>(BuildContext context);
 
 class DiLevel extends StatefulWidget {
   final int order;
@@ -24,9 +24,7 @@ class DiLevelState extends State<DiLevel> {
     if (widget.depends.isEmpty) return widget.child(context);
 
     return MultiProvider(
-      providers: widget.depends
-          .map((e) => Provider(create: (_) => e(context)))
-          .toList(),
+      providers: widget.depends.map((e) => e(context)).toList(),
       child: Builder(builder: (subCtx) => widget.child(subCtx)),
     );
   }

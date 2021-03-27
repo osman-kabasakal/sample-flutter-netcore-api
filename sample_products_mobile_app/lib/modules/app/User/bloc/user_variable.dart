@@ -8,7 +8,7 @@ class UserVariable extends ReactiveBehaviorSubjectBloc<User> {
 
   UserVariable() {
     listener = subject?.listen((value) {
-      subject?.drain();
+      // subject?.drain(value);
     });
   }
 

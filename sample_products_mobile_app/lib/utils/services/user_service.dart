@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:html';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:rxdart/subjects.dart';
@@ -41,21 +41,31 @@ class UserService {
 
   Future<User?> signIn(String email, String password) async {
     var uri = Uri.parse("${appConfig.baseApiUrl}/token/generate");
-    final response = await http.post(uri,
-        body: TokenRequest(Email: email, Password: password));
-    if (response.statusCode == HttpStatus.ok) {
-      var userResponse = ApiResponse<User>.fromJson(jsonDecode(response.body),
-          (json) => User.fromJson(json as Map<String, dynamic>));
-      if (userResponse.isSuccessful != null && userResponse.isSuccessful!) {
-        if (userResponse.entity != null) {
-          if (appConfig.hasDatabase)
-            userRepo.addAll(userResponse.entity!.toJson().keys.toList(),
-                [userResponse.entity!], DbInsertConfilictExtion.replace);
-          userSubject?.add(userResponse.entity!);
+    try {
+      var headers = <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      };
+      final response = await http.post(uri,
+          body: jsonEncode(
+              TokenRequest(Email: email, Password: password).toJson()),
+          headers: headers);
+      if (response.statusCode == HttpStatus.ok) {
+        var userResponse = ApiResponse<User>.fromJson(jsonDecode(response.body),
+            (json) => User.fromJson(json as Map<String, dynamic>));
+        if (userResponse.isSuccessful != null && userResponse.isSuccessful!) {
+          if (userResponse.entity != null) {
+            if (appConfig.hasDatabase)
+              await userRepo.addAll(
+                  userResponse.entity!.toSqlite().keys.toList(),
+                  [userResponse.entity!],
+                  DbInsertConfilictExtion.replace);
+            userSubject?.add(userResponse.entity!);
+          }
+          return userResponse.entity;
         }
-        return userResponse.entity;
       }
-    }
+    } catch (e) {}
+
     return null;
   }
 }

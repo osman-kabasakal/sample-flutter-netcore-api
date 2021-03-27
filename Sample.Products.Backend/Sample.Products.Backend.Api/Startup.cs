@@ -90,8 +90,8 @@ namespace Sample.Products.Backend.Api
                         .GetConnectionString("DebugConnection").TrimEnd(';', ' ') + ";MultipleActiveResultSets=true;"
                         : Configuration
                         .GetConnectionString("DefaultConnection");
-                // conString=Configuration
-                //     .GetConnectionString("DefaultConnection");
+                conString = Configuration
+                    .GetConnectionString("DefaultConnection");
                 options.UseSqlServer(
                     conString
                         , sqlServerOptionsAction: opt =>
@@ -203,21 +203,21 @@ namespace Sample.Products.Backend.Api
                     
                     var context = services.GetRequiredService<SampleProductsContext>();
                     context.Database.Migrate();
-                    var productService = services.GetRequiredService<IProductService>();
-                    var product = productService.GetAllProducts(0, 1);
-                    if (product.IsSuccessful&&product.Entity.Count==0)
-                    {
-                        var setupManager = services.GetRequiredService<ISetupManager>();
-                        setupManager.setup();
-                        var pictureService = services.GetRequiredService<IPictureService>();
+                    //var productService = services.GetRequiredService<IProductService>();
+                    //var product = productService.GetAllProducts(0, 1);
+                    //if (product.IsSuccessful&&product.Entity.Count==0)
+                    //{
+                    //    var setupManager = services.GetRequiredService<ISetupManager>();
+                    //    setupManager.setup();
+                    //    var pictureService = services.GetRequiredService<IPictureService>();
 
-                        var pics = pictureService.GetBinaryLessPictures();
+                    //    var pics = pictureService.GetBinaryLessPictures();
 
-                        foreach (var picture in pics.Entity.Items)
-                        {
-                            pictureService.SetPictureBinaryFromFile(picture);
-                        }
-                    }
+                    //    foreach (var picture in pics.Entity.Items)
+                    //    {
+                    //        pictureService.SetPictureBinaryFromFile(picture);
+                    //    }
+                    //}
                     
                     // var FirstUser=userManager.FindByEmailAsync(email).ConfigureAwait(true).GetAwaiter().GetResult();
                     // if(FirstUser == null)

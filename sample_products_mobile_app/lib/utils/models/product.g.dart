@@ -19,7 +19,7 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
     description: json['description'] as String?,
     pictureIds:
         (json['pictureIds'] as List<dynamic>?)?.map((e) => e as int).toList(),
-    price: json['price'] as int?,
+    price: (json['price'] as num?)?.toDouble(),
     quantity: json['quantity'] as int?,
     shortDescription: json['shortDescription'] as String?,
     tags: (json['tags'] as List<dynamic>?)

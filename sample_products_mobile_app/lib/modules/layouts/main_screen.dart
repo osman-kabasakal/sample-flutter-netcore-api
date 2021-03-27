@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sample_products_mobile_app/widgets/appbar_state_less.dart';
-
 import 'main_layout.dart';
 
 class MainScreen extends MainLayout {
@@ -8,29 +7,30 @@ class MainScreen extends MainLayout {
       {int contentSize = 10,
       int footerSize = 2,
       String title = "",
-      bool footerBgLight = true})
+      bool footerBgLight = true,
+      bool hasAppBar = false})
       : super(_appBar(title: title), _content(child: body),
             _footer(child: footer, bgLight: footerBgLight),
             contentSize: contentSize,
             footerSize: footerSize,
-            footerActive: footerActive);
+            footerActive: footerActive,
+            hasAppBar: hasAppBar);
 
   static Widget _appBar({String title = ""}) {
     // return AppBar(title: title);
-    return AppBarStLess(title);
+    return AppBarStLess("Örnek Uygulama");
   }
 
   static Widget _content({Widget child = const SizedBox.shrink()}) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      // decoration: BoxDecoration(
-      //   image: DecorationImage(
-      //     image: AssetImage("assets/game_area.png"),
-      //     fit: BoxFit.fill,
-      //   ),
-      // ),
-      child: child,
-    );
+        // margin: EdgeInsets.only(bottom: 10),
+        // decoration: BoxDecoration(
+        //   image: DecorationImage(
+        //     image: AssetImage("assets/game_area.png"),
+        //     fit: BoxFit.fill,
+        //   ),
+        // ),
+        child: child);
   }
 
   static Widget _footer(
