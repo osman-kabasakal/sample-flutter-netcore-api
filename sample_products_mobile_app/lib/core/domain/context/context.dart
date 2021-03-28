@@ -1,25 +1,28 @@
+import 'package:flutter/material.dart';
+import 'package:sample_products_mobile_app/Config/app_config.dart';
 import 'package:sample_products_mobile_app/core/bloc/reactive_bloc.dart';
 import 'package:path/path.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:sample_products_mobile_app/core/domain/entities/user.dart';
-import 'package:sample_products_mobile_app/core/domain/repositories/user_repository.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/services.dart';
+import 'package:sample_products_mobile_app/utils/helpers/di_helpers.dart';
 
-class DatabaseContext implements ReactiveBehaviorSubjectBloc<Database> {
-  DatabaseContext() {}
-  @override
-  void dispose() {
-    subject!.close();
+class DatabaseContext {
+  AppConfig? appConfig;
+
+  ReactiveSubject<Database?>? database;
+
+  DatabaseContext(BuildContext context) {
+    this.appConfig = context.getRequireBlocService<AppConfig>();
+    this.database = context.getRequireReactiveValue<Database>();
+    if (appConfig != null &&
+        appConfig!.hasDatabase &&
+        this.database != null &&
+        this.database!.subject != null) {
+      open();
+    }
   }
-
-  @override
-  Subject<Database>? subject = BehaviorSubject<Database>();
-
-  @override
-  Stream<Database> get subjectStream => subject!.stream.asBroadcastStream();
 
   Future open() async {
     try {
@@ -32,17 +35,10 @@ class DatabaseContext implements ReactiveBehaviorSubjectBloc<Database> {
       if (!exists) {
         try {
           await Directory(dirname(path)).create(recursive: true);
-        } catch (_) {}
-
-        // Copy from asset
-        //TODO: Eğer hazır db varsa onun yolu eklenecek
-        ByteData data = await rootBundle.load(join("assets", ""));
-
-        List<int> bytes =
-            data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-
-        await File(path).writeAsBytes(bytes, flush: true);
-      } else {}
+        } catch (_) {
+          var d = _;
+        }
+      }
       final database = await openDatabase(
         path,
         version: 1,
@@ -50,13 +46,13 @@ class DatabaseContext implements ReactiveBehaviorSubjectBloc<Database> {
         singleInstance: true,
         onUpgrade: databaseOnUpgrade,
         onCreate: (db, version) async {
-          return await databaseOnUpgrade(db, 0, version);
+          return await databaseOnUpgrade(db, 0, 1);
         },
       );
       if (!migrate) {
-        //TODO: migrate edilmemiş.
+        // await databaseOnUpgrade(database, 0, 1);
       }
-      subject!.sink.add(database);
+      this.database!.subject!.sink.add(database);
     } catch (e) {
       SystemChannels.platform.invokeMethod('SystemNavigator.pop');
     }
@@ -65,7 +61,14 @@ class DatabaseContext implements ReactiveBehaviorSubjectBloc<Database> {
   bool migrate = false;
   final List<List<String>> migrationScripts = [
     [
-      "create table user (id integer primary key not null, email text not null unique,jwtToken text,expire integer)"
+      // "create table user (id text primary key not null, email text not null unique,jwtToken text,expire integer)",
+      '''CREATE TABLE "user" (
+	"id"	TEXT NOT NULL UNIQUE,
+	"email"	TEXT NOT NULL UNIQUE,
+	"jwtToken"	TEXT,
+	"expire"	INTEGER,
+	PRIMARY KEY("id")
+);'''
     ],
   ];
   Future<void> databaseOnUpgrade(
@@ -74,7 +77,7 @@ class DatabaseContext implements ReactiveBehaviorSubjectBloc<Database> {
       for (var i = oldversion; i < version; i++) {
         for (var item in migrationScripts[i]) {
           try {
-            await database.rawQuery(item);
+            await database.execute(item);
           } catch (e) {
             continue;
           }
@@ -82,6 +85,8 @@ class DatabaseContext implements ReactiveBehaviorSubjectBloc<Database> {
       }
       migrate = true;
       return;
-    } catch (e) {}
+    } catch (e) {
+      var d = e;
+    }
   }
 }

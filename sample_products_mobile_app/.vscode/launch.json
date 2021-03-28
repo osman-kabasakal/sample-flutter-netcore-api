@@ -10,7 +10,7 @@
             "type": "dart"
         },
         {
-            "name": "sample_products_mobile_app",
+            "name": "sample_products_mobile_app dev",
             "request": "launch",
             "type": "dart",
             "program": "lib/main-dev.dart",

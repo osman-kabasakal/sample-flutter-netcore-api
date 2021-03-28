@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:sample_products_mobile_app/modules/app/Login/login.dart';
 
 abstract class MainLayout extends StatelessWidget {
+  bool hasAppBar = false;
+
   MainLayout(this.appBar, this.content, this.footer,
-      {this.contentSize = 10, this.footerSize = 2, this.footerActive = true})
+      {this.contentSize = 10,
+      this.footerSize = 2,
+      this.footerActive = true,
+      this.hasAppBar = false})
       : super();
 
   final int contentSize;
@@ -24,9 +30,8 @@ abstract class MainLayout extends StatelessWidget {
         return _onWilProp(context);
       },
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-        decoration: BoxDecoration(
-            //TODO: set background
+        // padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        decoration: BoxDecoration(color: Colors.grey[200]
             // image: DecorationImage(
 
             //   image: imagesConstants.backgroundImage,
@@ -34,9 +39,36 @@ abstract class MainLayout extends StatelessWidget {
             // ),
             ),
         child: SafeArea(
-          top: true,
-          child: _body(context),
-        ),
+            top: true,
+            child: Stack(
+              children: [_body(context), Login()],
+            )
+
+            //     Builder(
+            //   builder: (context) {
+            //     var user = context.getRequireReactiveValue<User>();
+            //     return StreamBuilder(
+            //       stream: user!.subjectStream,
+            //       builder: (context, snapshot) {
+            //         if (snapshot.connectionState == ConnectionState.done &&
+            //             snapshot.hasData) {
+            //           return child;
+            //         }
+            //         var sub = user.subject as BehaviorSubject<User>;
+            //         if (snapshot.connectionState != ConnectionState.done &&
+            //             sub.valueWrapper?.value == null) {
+            //           return Login();
+            //         }
+
+            //         return Center(
+            //           child: CircularProgressIndicator(),
+            //         );
+            //       },
+            //     );
+            //   },
+            // ),
+
+            ),
       ),
     );
   }
@@ -51,10 +83,11 @@ abstract class MainLayout extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Expanded(
-          flex: 2,
-          child: appBar,
-        ),
+        if (this.hasAppBar)
+          Expanded(
+            flex: 2,
+            child: appBar,
+          ),
         Expanded(
           child: content,
           flex: this.contentSize,

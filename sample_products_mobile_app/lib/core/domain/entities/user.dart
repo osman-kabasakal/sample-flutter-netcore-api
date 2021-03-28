@@ -14,17 +14,13 @@ class User extends IEntity {
   int? expire;
 
   DateTime get expireTime {
-    return DateTime.fromMicrosecondsSinceEpoch(
-        this.expire ?? DateTime.now().microsecondsSinceEpoch);
+    return DateTime.fromMillisecondsSinceEpoch(
+        this.expire ?? DateTime.now().millisecondsSinceEpoch);
   }
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   @override
-  Map<String, dynamic> toSqlite() => <String, dynamic>{
-        'id': this.id,
-        'expire': this.expire,
-        'jwtToken': this.jwtToken
-      };
+  Map<String, dynamic> toSqlite() => _$UserToJson(this);
 }

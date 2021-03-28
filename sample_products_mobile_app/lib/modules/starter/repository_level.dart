@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sample_products_mobile_app/Config/app_config.dart';
+import 'package:sample_products_mobile_app/core/domain/context/context.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sample_products_mobile_app/utils/helpers/di_helpers.dart';
 
@@ -15,11 +16,12 @@ class _RepositoriesLevelState extends State<RepositoriesLevel> {
   Widget build(BuildContext context) {
     final db = context.getRequireReactiveValue<Database>();
     final appConfig = context.getRequireBlocService<AppConfig>();
+    final dbService = DatabaseContext(context);
     if (appConfig != null && !appConfig.hasDatabase) {
       return widget.next;
     }
     return StreamBuilder(
-      stream: db?.subjectStream,
+      stream: db!.subjectStream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return widget.next;

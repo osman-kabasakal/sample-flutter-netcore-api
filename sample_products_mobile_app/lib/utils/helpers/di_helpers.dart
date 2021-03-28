@@ -14,8 +14,8 @@ extension DiHelpers on BuildContext {
     return Provider.of<T>(this);
   }
 
-  ReactiveSubject<T>? getRequireReactiveValue<T>() {
+  ReactiveSubject<T?>? getRequireReactiveValue<T>() {
     return (BlocProvider.of<ReactiveVariebles>(this)?.getSubject<T>()
-        as ReactiveSubject<T>?);
+        as ReactiveSubject<T?>?);
   }
 }

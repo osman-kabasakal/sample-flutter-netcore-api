@@ -8,7 +8,7 @@ void main() {
   runApp(
     BlocProvider(
       bloc: AppConfig(true,
-          hasDatabase: true, baseApiUrl: "https://10.0.2.2:15328"),
+          hasDatabase: true, baseApiUrl: "http://10.0.2.2:11622"),
       child: AppStarter(),
     ),
   );
