@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -46,7 +47,7 @@ namespace Sample.Products.Backend.Api
         private IWebHostEnvironment _environment;
 
         public Startup(IConfiguration configuration, IWebHostEnvironment environment
-            )
+        )
         {
             Configuration = configuration;
             _environment = environment;
@@ -73,7 +74,7 @@ namespace Sample.Products.Backend.Api
                 Assembly.GetAssembly(typeof(TagService)),
                 Assembly.GetExecutingAssembly(),
                 Assembly.GetAssembly(typeof(AspectContext)));
-            
+
             services.AddUnitOfWork<SampleProductsContext>();
             services.AddScoped<ITagService, TagService>();
             services.AddScoped<ICategoryService, CategoryService>();
@@ -85,16 +86,16 @@ namespace Sample.Products.Backend.Api
             services.AddScoped<ISetupManager, SetupManager>();
             services.AddDbContext<SampleProductsContext>(options =>
             {
-                var conString = _environment.IsDevelopment() ?
-                    Configuration
+                var conString = _environment.IsDevelopment()
+                    ? Configuration
                         .GetConnectionString("DebugConnection").TrimEnd(';', ' ') + ";MultipleActiveResultSets=true;"
-                        : Configuration
+                    : Configuration
                         .GetConnectionString("DefaultConnection");
-                conString = Configuration
-                    .GetConnectionString("DefaultConnection");
+                // conString = Configuration
+                //     .GetConnectionString("DefaultConnection");
                 options.UseSqlServer(
                     conString
-                        , sqlServerOptionsAction: opt =>
+                    , sqlServerOptionsAction: opt =>
                     {
                         opt.CommandTimeout(180);
                         opt.MigrationsAssembly("Sample.Products.Backend.Api");
@@ -103,15 +104,15 @@ namespace Sample.Products.Backend.Api
                 options.EnableSensitiveDataLogging();
             });
             // services.AddScoped<UserManager<Customer>>();
-            
+
             services
                 .AddIdentity<Customer, RegisteredRole>()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<SampleProductsContext>();
-            
+
             var appSettingsSection = Configuration.GetSection("JwtOptions");
             services.Configure<JwtOptions>(appSettingsSection);
-            
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -122,10 +123,9 @@ namespace Sample.Products.Backend.Api
                 options.RequireHttpsMetadata = false;
                 options.SaveToken = true;
                 options.ClaimsIssuer = Configuration["JwtOptions:Issuer"];
-                var key=Configuration["JwtOptions:Key"];
+                var key = Configuration["JwtOptions:Key"];
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
@@ -144,13 +144,10 @@ namespace Sample.Products.Backend.Api
                         {
                             context.Fail("Unauthorized. Please re-login");
                         }
+
                         return Task.CompletedTask;
                     },
-                    OnAuthenticationFailed = (context) =>
-                    {
-                        
-                        return Task.CompletedTask;
-                    }
+                    OnAuthenticationFailed = (context) => { return Task.CompletedTask; }
                 };
             });
             // services.AddScoped<ITagService>(x=>);
@@ -163,8 +160,11 @@ namespace Sample.Products.Backend.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            else if (env.IsProduction())
+            {
+                app.UseHttpsRedirection();
+            }
 
-            app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseCors(x => x
@@ -181,17 +181,20 @@ namespace Sample.Products.Backend.Api
             //     RequestPath = new PathString("/images")
             // });
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=WeatherForecast}/{action=Get}");
+            });
             if (true)
             {
                 // return;
             }
+
             var host = app.ApplicationServices;
             using (var scope = host.CreateScope())
             {
-                
-                
-            
                 // requires using Microsoft.Extensions.Configuration;
                 // var userManager = host.GetService(typeof(UserManager<Customer>)) as UserManager<Customer>;
                 // var email = "test@sample.com";
@@ -200,7 +203,6 @@ namespace Sample.Products.Backend.Api
                 var services = scope.ServiceProvider;
                 try
                 {
-                    
                     var context = services.GetRequiredService<SampleProductsContext>();
                     context.Database.Migrate();
                     //var productService = services.GetRequiredService<IProductService>();
@@ -218,7 +220,7 @@ namespace Sample.Products.Backend.Api
                     //        pictureService.SetPictureBinaryFromFile(picture);
                     //    }
                     //}
-                    
+
                     // var FirstUser=userManager.FindByEmailAsync(email).ConfigureAwait(true).GetAwaiter().GetResult();
                     // if(FirstUser == null)
                     // {
@@ -232,14 +234,14 @@ namespace Sample.Products.Backend.Api
                     //         userManager.AddToRoleAsync(FirstUser,val).ConfigureAwait(false).GetAwaiter().GetResult();
                     //     });
                     // }
-            
+
                     // foreach (var picture in pictureService.AllPicture().Entity.Items)
                     // {
                     //     picture.TitleAttribute = $"title-{picture.Id}";
                     //     pictureService.UpdatePicture(picture);
                     // }
-                    
-                    
+
+
                     //
                     // pics = pictureService.GetBinaryLessPictures();
                     // if (!pics.Entity.Items.IsNullOrEmpty())

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_products_mobile_app/Config/app_config.dart';
 import 'package:sample_products_mobile_app/Config/routes/route_setting.dart';
@@ -21,61 +22,128 @@ class _ProductListState extends State<ProductList> {
   late ProductManager productManager;
 
   late AppConfig appConfig;
+  @override
+  void didUpdateWidget(covariant ProductList oldWidget) {
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     this.productManager = context.getRequireProviderService<ProductManager>();
     this.appConfig = context.getRequireBlocService<AppConfig>()!;
   }
 
+  int page = 0;
+  bool pageLoading = false;
+  ScrollController gridScroll = ScrollController(keepScrollOffset: true);
+  double scrollPosition = 0.0;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 100,
       height: 100,
       padding: EdgeInsets.all(10),
-      child: FutureBuilder<Paginate<Product>?>(
-        future: productManager.getProducts(
-            categoryId: widget.categoryId, page: 0, size: 10),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            if ((snapshot.data!.count) > 0) {
-              return GridView.count(
-                // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                //     crossAxisCount: 2,
-                //     mainAxisSpacing: 10,
-                //     mainAxisExtent: 2,
-                //     crossAxisSpacing: 10),
-                mainAxisSpacing: 10,
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                childAspectRatio: .8,
-                scrollDirection: Axis.vertical,
-                children: snapshot.data!.items
-                    .map((e) => _productListItem(e))
-                    .toList(),
-              );
+      child: NotificationListener<ScrollNotification>(
+        onNotification: (notification) {
+          scrollPosition = notification.metrics.pixels;
+          if (notification is ScrollEndNotification &&
+              notification.metrics.maxScrollExtent ==
+                  notification.metrics.pixels) {
+            // if(pageLoading)
+
+            // if (oynadiklari.length <= pageSize ||
+            //     page * pageSize >= oynadiklari.length - 1) {
+            //   setState(() {
+            //     pageLoading = false;
+            //   });
+            //   return false;
+            // }
+            if (!pageLoading &&
+                lasFetchedProducts != null &&
+                lasFetchedProducts!.hasNext) {
+              page++;
+              setState(() {
+                pageLoading = true;
+              });
+              return false;
             }
           }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          return true;
         },
+        child: FutureBuilder<Paginate<Product>?>(
+          future: productManager.getProducts(
+              categoryId: widget.categoryId, page: page, size: 10),
+          builder: (context, snapshot) {
+            // if (snapshot.connectionState == ConnectionState.active ||
+            //     snapshot.connectionState == ConnectionState.waiting)
+
+            if (snapshot.connectionState == ConnectionState.done &&
+                snapshot.hasData) {
+              _setProducts(snapshot.data!);
+              if (productList.length > 0) {
+                return GridView.count(
+                  controller: ScrollController(
+                      keepScrollOffset: true,
+                      initialScrollOffset: scrollPosition),
+                  mainAxisSpacing: 10,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: .8,
+                  scrollDirection: Axis.vertical,
+                  children: productList,
+                  addAutomaticKeepAlives: true,
+                );
+              } else {
+                return Center(
+                  child: Container(
+                    child: Center(
+                      child: Text(
+                        "Products is empty.",
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                    ),
+                  ),
+                );
+              }
+            } else if (snapshot.connectionState == ConnectionState.none &&
+                !snapshot.hasData) {
+              return Center(
+                child: Container(
+                  child: Center(
+                    child: Text(
+                      "Products is empty.",
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                  ),
+                ),
+              );
+            }
+
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+        ),
       ),
     );
   }
 
+  List<Widget> productList = [];
   Widget _productListItem(Product product) {
-    var picture = (product.pictureIds?.first == null
-        ? AssetImage("")
-        : NetworkImage(appConfig.baseApiUrl +
-            "/images/" +
-            product.pictureIds!.first.toString().padLeft(6, "0") +
-            ".jpeg")) as ImageProvider;
+    var hasPicture =
+        product.pictureIds != null && product.pictureIds!.length > 0;
+    // var picture = ;
     return RawMaterialButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context)
+            .pushNamed(Routes.product, arguments: {"product": product});
+      },
       child: Container(
         width: 1000,
         height: 1000,
@@ -88,8 +156,20 @@ class _ProductListState extends State<ProductList> {
           children: [
             Positioned.fill(
               child: Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(image: picture, fit: BoxFit.fill)),
+                decoration: hasPicture
+                    ? BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(appConfig.baseApiUrl +
+                                "/mobile/images/" +
+                                product.pictureIds!.first
+                                    .toString()
+                                    .padLeft(6, "0") +
+                                ".webp"),
+                            fit: BoxFit.fill))
+                    : null,
+                child: !hasPicture
+                    ? SvgPicture.asset("assets/images/logo.svg")
+                    : null,
               ),
             ),
             Positioned(
@@ -165,5 +245,30 @@ class _ProductListState extends State<ProductList> {
         ),
       ),
     );
+  }
+
+  late Widget loadingWidget = Card(
+    child: Visibility(
+      child: ListTile(
+        title: Center(
+          child: CircularProgressIndicator(),
+        ),
+      ),
+      visible: pageLoading,
+    ),
+  );
+  Paginate<Product>? lasFetchedProducts;
+  void _setProducts(Paginate<Product> paginate) {
+    if (productList.contains(loadingWidget)) {
+      productList.remove(loadingWidget);
+    }
+    lasFetchedProducts = paginate;
+    if (paginate.items.length > 0) {
+      productList.addAll(paginate.items.map((e) => _productListItem(e)));
+      if (paginate.hasNext) {
+        productList.add(loadingWidget);
+      }
+    }
+    pageLoading = false;
   }
 }

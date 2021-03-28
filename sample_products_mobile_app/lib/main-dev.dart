@@ -8,8 +8,7 @@ void main() {
   runApp(
     BlocProvider(
       bloc: AppConfig(true,
-          hasDatabase: true,
-          baseApiUrl: "https://flutter-sample-app.azurewebsites.net"),
+          hasDatabase: true, baseApiUrl: "http://10.0.2.2:11622"),
       child: AppStarter(),
     ),
   );

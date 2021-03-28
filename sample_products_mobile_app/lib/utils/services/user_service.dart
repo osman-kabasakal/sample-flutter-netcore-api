@@ -16,16 +16,16 @@ import 'package:sample_products_mobile_app/utils/models/token_request.dart';
 class UserService {
   late UserRepository userRepo;
 
-  ReactiveSubject<User>? user;
+  ReactiveSubject<User?>? user;
 
-  BehaviorSubject<User>? userSubject;
+  BehaviorSubject<User?>? userSubject;
 
   late AppConfig appConfig;
 
   UserService(BuildContext context) {
     this.userRepo = context.getRequireProviderService<UserRepository>();
     this.user = context.getRequireReactiveValue<User>();
-    this.userSubject = (this.user?.subject as BehaviorSubject<User>);
+    this.userSubject = (this.user?.subject as BehaviorSubject<User?>);
     this.appConfig = context.getRequireBlocService<AppConfig>() ??
         new AppConfig(true,
             hasDatabase: false, baseApiUrl: "https://10.0.2.2:8080");
@@ -41,6 +41,10 @@ class UserService {
 
   Future<User?> signIn(String email, String password) async {
     var uri = Uri.parse("${appConfig.baseApiUrl}/token/generate");
+    // var client = HttpClient();
+    // client..badCertificateCallback = (crt,bl,b) => true;
+
+    // client.postUrl(uri)
     try {
       var headers = <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -59,7 +63,8 @@ class UserService {
                   userResponse.entity!.toSqlite().keys.toList(),
                   [userResponse.entity!],
                   DbInsertConfilictExtion.replace);
-            userSubject?.add(userResponse.entity!);
+            this.user?.subject?.sink.add(userResponse.entity!);
+            // .add(userResponse.entity!);
           }
           return userResponse.entity;
         }

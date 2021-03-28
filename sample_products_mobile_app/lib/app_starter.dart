@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:sample_products_mobile_app/Config/app_config.dart';
 import 'package:sample_products_mobile_app/core/di/di_level.dart';
 import 'package:sample_products_mobile_app/utils/managers/categoryManager.dart';
 import 'package:sample_products_mobile_app/utils/managers/product_manager.dart';
@@ -13,6 +14,7 @@ import 'core/bloc/reactive_variebles.dart';
 import 'core/domain/repositories/user_repository.dart';
 import 'modules/starter/repository_level.dart';
 import 'utils/helpers/route_helpers.dart';
+import 'package:sample_products_mobile_app/utils/helpers/di_helpers.dart';
 
 class AppStarter extends StatelessWidget {
   @override
@@ -28,9 +30,12 @@ class AppStarter extends StatelessWidget {
                     order: 3,
                     child: (dicontext3) => DiLevel(
                         order: 4,
-                        child: (di3Context) => MaterialApp(
+                        child: (dicontext4) => MaterialApp(
                               title: "Selam",
                               initialRoute: Routes.home,
+                              debugShowCheckedModeBanner: dicontext4
+                                  .getRequireBlocService<AppConfig>()!
+                                  .debug,
                               onGenerateRoute: (settings) =>
                                   settings.getRoute(),
                             ),

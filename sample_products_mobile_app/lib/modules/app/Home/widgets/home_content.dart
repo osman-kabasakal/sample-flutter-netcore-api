@@ -19,8 +19,9 @@ class _HomeContentState extends State<HomeContent> {
         clipBehavior: Clip.antiAlias,
         children: [
           Container(
-            width: double.infinity,
-            height: 150,
+            width: MediaQuery.of(context).size.width,
+            height: 100,
+            color: Colors.white,
             child: CategoryList(
               categoryId: routeArgs?["categoryId"],
             ),

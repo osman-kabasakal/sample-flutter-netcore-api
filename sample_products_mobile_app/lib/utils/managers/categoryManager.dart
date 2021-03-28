@@ -27,7 +27,7 @@ class CategoryManager {
       HttpHeaders.authorizationHeader: "Bearer $token",
       HttpHeaders.acceptCharsetHeader: "UTF-8"
     });
-    if (response.statusCode != HttpStatus.ok) return null;
+    if (response.statusCode != HttpStatus.ok) return [];
 
     var categoryResponse = ApiResponse<List<Category>>.fromJson(
         jsonDecode(response.body),
@@ -37,5 +37,6 @@ class CategoryManager {
     if (categoryResponse.isSuccessful!) {
       return categoryResponse.entity;
     }
+    return [];
   }
 }

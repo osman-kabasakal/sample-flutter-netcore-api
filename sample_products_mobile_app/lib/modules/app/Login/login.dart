@@ -18,9 +18,9 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   late UserService userService;
 
-  late BehaviorSubject<User> userSubject;
+  late BehaviorSubject<User?> userSubject;
 
-  StreamSubscription<User>? userSubscribe;
+  StreamSubscription<User?>? userSubscribe;
 
   late bool isRequireSign;
 
@@ -29,12 +29,12 @@ class _LoginState extends State<Login> {
     super.didChangeDependencies();
     this.userService = context.getRequireProviderService<UserService>();
     this.userSubject = context.getRequireReactiveValue<User>()?.subject
-        as BehaviorSubject<User>;
+        as BehaviorSubject<User?>;
     isRequireSign = userSubject.valueWrapper?.value == null;
     if (userSubscribe == null)
       this.userSubscribe = userSubject.listen((value) {
         setState(() {
-          this.isRequireSign = false;
+          this.isRequireSign = value == null;
         });
       });
   }
@@ -188,7 +188,7 @@ class _LoginState extends State<Login> {
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
                         TextSpan(
-                          text: 'burayı ziyaret ediniz.',
+                          text: 'burayı ziyaret edebilirisiniz.',
                           style: new TextStyle(color: Color(0xff2A2AC0)),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () async {

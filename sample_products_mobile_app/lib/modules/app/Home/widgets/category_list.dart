@@ -35,25 +35,18 @@ class _CategoryListState extends State<CategoryList> {
           var cat = widget.categoryId != null
               ? snapshout.data
                   ?.where((element) => element.id == widget.categoryId)
-                  .first
-                  .subCategories
               : snapshout.data?.where((element) => element.parentId == null);
-          var hasItem = cat?.toList().isNotEmpty ?? false;
+          var hasItem = (cat?.toList().length ?? 0) > 0;
+          if (widget.categoryId != null && hasItem) {
+            cat = cat!.first.subCategories;
+          }
+          print(hasItem);
+          if (!hasItem) {
+            return SizedBox.shrink();
+          }
           return ListView(
-            scrollDirection: Axis.horizontal,
-            children: hasItem
-                ? cat?.toList().map((e) => _categoryItem(e)).toList() ??
-                    [
-                      Container(
-                        child: Text("Category is empty."),
-                      )
-                    ]
-                : [
-                    Container(
-                      child: Text("Category is empty."),
-                    )
-                  ],
-          );
+              scrollDirection: Axis.horizontal,
+              children: cat!.toList().map((e) => _categoryItem(e)).toList());
         }
         return Container(
           width: 10,
@@ -71,14 +64,13 @@ class _CategoryListState extends State<CategoryList> {
       // width: 100,
       height: 10,
       padding: EdgeInsets.all(12.5),
-      color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: 75,
-            height: 75,
+            width: 50,
+            height: 50,
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -91,7 +83,7 @@ class _CategoryListState extends State<CategoryList> {
                         arguments: {"categoryId": category.id})));
               },
               child: Image.network(
-                "${appConfig.baseApiUrl}/images/${category.pictureId.toString().padLeft(6, '0')}.jpeg",
+                "${appConfig.baseApiUrl}/mobile/images/${category.pictureId.toString().padLeft(6, '0')}.webp",
                 fit: BoxFit.fitWidth,
               ),
             ),

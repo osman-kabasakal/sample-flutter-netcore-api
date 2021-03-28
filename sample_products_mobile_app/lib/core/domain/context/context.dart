@@ -11,7 +11,7 @@ import 'package:sample_products_mobile_app/utils/helpers/di_helpers.dart';
 class DatabaseContext {
   AppConfig? appConfig;
 
-  ReactiveSubject<Database>? database;
+  ReactiveSubject<Database?>? database;
 
   DatabaseContext(BuildContext context) {
     this.appConfig = context.getRequireBlocService<AppConfig>();
